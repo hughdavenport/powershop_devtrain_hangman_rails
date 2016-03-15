@@ -8,22 +8,26 @@ RSpec.describe Game, type: :model do
       let(:default_starting_word)  { "hangman" }
 
       describe "#score" do
+        subject { game.score }
+
         it "should be set" do
-          expect(game.score).not_to be_nil
+          is_expected.not_to be_nil
         end
 
         it "should be the default" do
-          expect(game.score).to eql default_starting_score
+          is_expected.to eql default_starting_score
         end
       end
 
       describe "#word" do
+        subject { game.word }
+
         it "should be set" do
-          expect(game.word).not_to be_nil
+          is_expected.not_to be_nil
         end
 
         it "should be the default" do
-          expect(game.word).to eql default_starting_word
+          is_expected.to eql default_starting_word
         end
       end
     end
