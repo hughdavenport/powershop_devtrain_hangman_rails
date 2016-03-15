@@ -45,5 +45,31 @@ RSpec.describe Game, type: :model do
         end
       end
     end
+
+    context "with an argument for the starting word" do
+      let(:argument) { "testing" }
+      subject(:game) { Game.new(starting_word: argument) }
+
+      describe "#word" do
+        subject { game.word }
+
+        it "should be the same as the argument" do
+          is_expected.to eql argument
+        end
+      end
+    end
+
+    context "with an argument for the starting score" do
+      let(:argument) { 1 }
+      subject(:game) { Game.new(starting_score: argument) }
+
+      describe "#score" do
+        subject { game.score }
+
+        it "should be the same as the argument" do
+          is_expected.to eql argument
+        end
+      end
+    end
   end
 end

@@ -8,9 +8,9 @@ class Game < ActiveRecord::Base
 
   def initialize(starting_score: DEFAULT_STARTING_SCORE,
                  starting_word:  DEFAULT_STARTING_WORD)
-    @score   = starting_score
-    @word    = starting_word
-    @guesses = []
+    @starting_score = starting_score
+    @word           = starting_word
+    @guesses        = []
   end
 
   def word_guessed_so_far
@@ -27,5 +27,17 @@ class Game < ActiveRecord::Base
 
   def finished?
     won? || lost?
+  end
+
+  def score
+    @starting_score - incorrect_guesses.length
+  end
+
+  def correct_guesses
+    guesses - incorrect_guesses
+  end
+
+  def incorrect_guesses
+    guesses - word.chars
   end
 end
