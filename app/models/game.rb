@@ -40,4 +40,8 @@ class Game < ActiveRecord::Base
   def incorrect_guesses
     guesses - word.chars
   end
+
+  def submit_guess(guess)
+    guesses << guess
+  end
 end

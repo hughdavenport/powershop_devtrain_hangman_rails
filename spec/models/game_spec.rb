@@ -16,10 +16,6 @@ RSpec.describe Game, type: :model do
       describe "#score" do
         subject { game.score }
 
-        it "should be set" do
-          is_expected.not_to be_nil
-        end
-
         it "should be the default" do
           is_expected.to eql default_starting_score
         end
@@ -27,10 +23,6 @@ RSpec.describe Game, type: :model do
 
       describe "#word" do
         subject { game.word }
-
-        it "should be set" do
-          is_expected.not_to be_nil
-        end
 
         it "should be the default" do
           is_expected.to eql default_starting_word
@@ -69,6 +61,44 @@ RSpec.describe Game, type: :model do
         it "should be the same as the argument" do
           is_expected.to eql argument
         end
+      end
+    end
+  end
+
+  context "when I have a new game with 1 life left" do
+    subject(:game) { Game.new(starting_score: 1) }
+
+    context "and I make an incorrect guess" do
+      let(:guess) { 'z' } # default word of hangman
+      before { game.submit_guess(guess) }
+
+      describe "the game" do
+        it { is_expected.not_to be_won }
+        it { is_expected.to be_lost }
+        it { is_expected.to be_finished }
+      end
+
+      describe "#score" do
+        subject { game.score }
+
+        it { is_expected.to be 0 }
+      end
+    end
+
+    context "and I made a correct guess" do
+      let(:guess) { 'a' } # default word of hangman
+      before { game.submit_guess(guess) }
+
+      describe "the game" do
+        it { is_expected.not_to be_won }
+        it { is_expected.not_to be_lost }
+        it { is_expected.not_to be_finished }
+      end
+
+      describe "#score" do
+        subject { game.score }
+
+        it { is_expected.to be 1 }
       end
     end
   end
