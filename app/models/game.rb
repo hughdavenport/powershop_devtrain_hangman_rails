@@ -16,4 +16,16 @@ class Game < ActiveRecord::Base
   def word_guessed_so_far
     word.chars.map { |character| character if guesses.include?(character) }
   end
+
+  def won?
+    word == word_guessed_so_far.join
+  end
+
+  def lost?
+    score == 0
+  end
+
+  def finished?
+    won? || lost?
+  end
 end

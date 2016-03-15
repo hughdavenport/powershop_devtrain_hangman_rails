@@ -16,3 +16,12 @@ end
 Then(/^the (.*) should be empty$/) do |field|
   expect(@game.send(field.gsub(/ /, "_")).compact).to be_empty
 end
+
+Then(/^I have(( not)?) (.*) the game$/) do |negation, ignore, method|
+  expectation = expect(@game.send("#{method}?"))
+  if negation.empty?
+    expectation.to be true
+  else
+    expectation.to be false
+  end
+end

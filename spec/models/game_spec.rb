@@ -7,6 +7,12 @@ RSpec.describe Game, type: :model do
       let(:default_starting_score) { 10 }
       let(:default_starting_word)  { "hangman" }
 
+      describe "the game" do
+        it { is_expected.not_to be_won }
+        it { is_expected.not_to be_lost }
+        it { is_expected.not_to be_finished }
+      end
+
       describe "#score" do
         subject { game.score }
 

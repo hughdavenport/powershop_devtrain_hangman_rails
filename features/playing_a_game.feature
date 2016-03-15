@@ -9,3 +9,6 @@ Feature: Playing a game
     And the word should be set
     And the word should be the default
     And the word guessed so far should be empty
+    And I have not won the game
+    And I have not lost the game
+    And I have not finished the game
