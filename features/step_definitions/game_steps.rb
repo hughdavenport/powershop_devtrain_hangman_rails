@@ -12,3 +12,7 @@ end
 Then(/^the (.*) should be the default$/) do |field|
   expect(@game.send(field.gsub(/ /, "_"))).to eql Object.const_get("DEFAULT_STARTING_#{field.upcase}")
 end
+
+Then(/^the (.*) should be empty$/) do |field|
+  expect(@game.send(field.gsub(/ /, "_")).compact).to be_empty
+end

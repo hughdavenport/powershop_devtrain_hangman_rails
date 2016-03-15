@@ -8,3 +8,4 @@ Feature: Playing a game
     And the score should be the default
     And the word should be set
     And the word should be the default
+    And the word guessed so far should be empty

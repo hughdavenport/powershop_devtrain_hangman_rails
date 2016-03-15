@@ -30,6 +30,14 @@ RSpec.describe Game, type: :model do
           is_expected.to eql default_starting_word
         end
       end
+
+      describe "#word_guessed_so_far" do
+        subject { game.word_guessed_so_far}
+
+        it "should be empty" do
+          expect(subject.compact).to be_empty
+        end
+      end
     end
   end
 end
