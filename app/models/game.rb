@@ -1,16 +1,13 @@
 class Game < ActiveRecord::Base
-  attr_reader :score
-  attr_reader :word
-  attr_reader :guesses
+  after_initialize :set_default_values
 
   DEFAULT_STARTING_SCORE = 10
   DEFAULT_STARTING_WORD  = "hangman"
 
-  def initialize(starting_score: DEFAULT_STARTING_SCORE,
-                 starting_word:  DEFAULT_STARTING_WORD)
-    @starting_score = starting_score
-    @word           = starting_word
-    @guesses        = []
+  def set_default_values
+    self.starting_score ||= DEFAULT_STARTING_SCORE
+    self.word           ||= DEFAULT_STARTING_WORD
+    self.guesses        ||= []
   end
 
   def word_guessed_so_far
@@ -30,7 +27,15 @@ class Game < ActiveRecord::Base
   end
 
   def score
-    @starting_score - incorrect_guesses.length
+    self.starting_score - incorrect_guesses.length
+  end
+
+  def guesses
+    super.chars if super
+  end
+
+  def guesses=(value)
+    super(value.join)
   end
 
   def correct_guesses
@@ -42,6 +47,6 @@ class Game < ActiveRecord::Base
   end
 
   def submit_guess(guess)
-    guesses << guess
+    self.guesses <<= guess
   end
 end
