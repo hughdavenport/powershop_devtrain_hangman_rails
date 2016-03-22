@@ -6,90 +6,53 @@ Feature: Playing a game
     Given I see the home page
     When I click "New Game"
     Then I should see a new game
-    And I should have a guess word of all underscores
-    And I should have guessed nothing
-    And I should have a score of 10
-    And I should not have won the game
-    And I should not have lost the game
-    And the game should not be finished
 
   Scenario: Making a valid guess
-    Given I have a game with the word hangman
-    And I have guessed nothing
-    When I make a guess of a
-    Then I should have a guessed word of _a___an
-    And I should have guessed a
-    And I should have a score of 10
-    And I should not have won the game
-    And I should not have lost the game
-    And the game should not be finished
+    Given I have a new game
+    When I make a valid guess
+    Then I should see my guess
+    And I should have 1 correct guess
+    And I should have no incorrect guesses
+    And I should not have lost lives
 
   Scenario: Making an invalid guess
-    Given I have a game with the word hangman
-    And I have guessed nothing
-    When I make a guess of z
-    Then I should have a guessed word of _______
-    And I should have guessed z
-    And I should have a score of 9
-    And I should not have won the game
-    And I should not have lost the game
-    And the game should not be finished
+    Given I have a new game
+    When I make an invalid guess
+    Then I should see my guess
+    And I should have no correct guesses
+    And I should have 1 incorrect guess
+    And I should have lost 1 life
 
   Scenario: Making multiple guesses
-    Given I have a game with the word hangman
-    And I have guessed nothing
-    When I make a guess of a
-    And I make a guess of n
-    And I make a guess of z
-    And I make a guess of m
-    And I make a guess of s
-    Then I should have a guessed word of _an_man
-    And I should have guessed a, n, z, m, and z
-    And I should have a score of 8
-    And I should not have won the game
-    And I should not have lost the game
-    And the game should not be finished
+    Given I have a new game
+    When I make 3 valid guesses
+    And I make 2 invalid guesses
+    Then I should have 3 correct guesses
+    And I should have lost 2 lives
 
   Scenario: Almost wining a game
-    Given I have a game with the word hangman
-    And I have guessed a, s, r, n, t, g, and p
-    When I guess m
+    Given I have almost won a game
+    When I guess an invalid guess
     Then I should not have won the game
     And I should not have lost the game
-    And the game should not be finished
-    And I should have a guessed word of _angman
-    And I should have guessed a, s, r, n, t, g, p, and m
-    And I should have a score of 6
+    And I should have lost 1 more life
 
   Scenario: Winning a game
-    Given I have a game with the word hangman
-    And I have guessed a, s, r, n, t, g, p, and m
-    When I guess h
+    Given I have almost won a game
+    When I guess a valid guess
     Then I should have won the game
     And I should not have lost the game
-    And the game should be finished
-    And I should have a guessed word of hangman
-    And I should have guessed a, s, r, n, t, g, p, m, and h
-    And I should have a score of 6
+    And I should not have lost more lives
 
   Scenario: Almost losing a game
-    Given I have a game with the word hangman
-    And I have guessed s, r, t, w, n, p, a, e, i, and o
-    When I guess u
+    Given I have almost lost a game
+    When I guess a valid guess
     Then I should not have lost the game
     And I should not have won the game
-    And the game should not be finished
-    And I should have a guessed word of _an__an
-    And I should have guessed s, r, t, w, n, p, a, e, i, o, and u
-    And I should have a score of 1
+    And I should not have lost more lives
 
   Scenario: Losing a game
-    Given I have a game with the word hangman
-    And I have guessed s, r, t, w, n, p, a, e, i, o, and u
-    When I guess y
+    Given I have almost lost a game
+    When I guess an invalid guess
     Then I should have lost the game
     And I should not have won the game
-    And the game should be finished
-    And I should have a guessed word of _an__an
-    And I should have guessed s, r, t, w, n, p, a, e, i, o, u, and y
-    And I should have a score of 0
