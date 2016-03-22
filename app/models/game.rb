@@ -19,14 +19,14 @@ class Game < ActiveRecord::Base
   end
 
   def lost?
-    score == 0
+    lives == 0
   end
 
   def finished?
     won? || lost?
   end
 
-  def score
+  def lives
     self.starting_score - incorrect_guesses.length
   end
 

@@ -13,8 +13,8 @@ RSpec.describe Game, type: :model do
         it { is_expected.not_to be_finished }
       end
 
-      describe "#score" do
-        subject { game.score }
+      describe "#lives" do
+        subject { game.lives }
 
         it "should be the default" do
           is_expected.to eql default_starting_score
@@ -55,8 +55,8 @@ RSpec.describe Game, type: :model do
       let(:argument) { 1 }
       subject(:game) { Game.new(starting_score: argument) }
 
-      describe "#score" do
-        subject { game.score }
+      describe "#lives" do
+        subject { game.lives }
 
         it "should be the same as the argument" do
           is_expected.to eql argument
@@ -78,8 +78,8 @@ RSpec.describe Game, type: :model do
         it { is_expected.to be_finished }
       end
 
-      describe "#score" do
-        subject { game.score }
+      describe "#lives" do
+        subject { game.lives }
 
         it { is_expected.to be 0 }
       end
@@ -95,8 +95,8 @@ RSpec.describe Game, type: :model do
         it { is_expected.not_to be_finished }
       end
 
-      describe "#score" do
-        subject { game.score }
+      describe "#lives" do
+        subject { game.lives }
 
         it { is_expected.to be 1 }
       end
