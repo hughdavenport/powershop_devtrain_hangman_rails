@@ -15,26 +15,13 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    if @game.save
+      redirect_to @game, notice: 'Game was successfully created.'
+    end
   end
 
   # GET /games/1/edit
   def edit
-  end
-
-  # POST /games
-  # POST /games.json
-  def create
-    @game = Game.new(game_params)
-
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /games/1
