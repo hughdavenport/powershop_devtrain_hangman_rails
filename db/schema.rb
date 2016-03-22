@@ -11,14 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322025538) do
+ActiveRecord::Schema.define(version: 20160322220054) do
 
   create_table "games", force: :cascade do |t|
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "word"
     t.integer  "starting_score"
-    t.string   "guesses"
   end
+
+  create_table "guesses", force: :cascade do |t|
+    t.string   "guess",      limit: 1
+    t.integer  "game_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "guesses", ["game_id"], name: "index_guesses_on_game_id"
 
 end

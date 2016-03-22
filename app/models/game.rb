@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   after_initialize :set_default_values
+  has_many :guesses
 
   DEFAULT_STARTING_SCORE = 10
   DEFAULT_STARTING_WORD  = "hangman"
@@ -31,11 +32,8 @@ class Game < ActiveRecord::Base
   end
 
   def guesses
-    super.chars if super
-  end
-
-  def guesses=(value)
-    super(value.join)
+    # Call the active record relation, and just get out the guess character, and join into an array
+    super.all.map { |guess| guess.guess }
   end
 
   def correct_guesses
@@ -47,6 +45,6 @@ class Game < ActiveRecord::Base
   end
 
   def submit_guess(guess)
-    self.guesses <<= guess
+    g = Guess.new(game: self, guess: guess);g.save
   end
 end
