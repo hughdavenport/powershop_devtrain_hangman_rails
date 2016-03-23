@@ -205,6 +205,15 @@ RSpec.describe Game, type: :model do
       end
     end
 
+    context "of an empty string" do
+      let(:guess) { "" }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+
     context "of a multicharacter string" do
       let(:guess) { "ab" }
       subject { game.submit_guess(guess) }
