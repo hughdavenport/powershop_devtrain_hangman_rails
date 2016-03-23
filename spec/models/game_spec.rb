@@ -144,4 +144,34 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  context "when I have a game that has made a correct guess" do
+    subject(:game) { Game.new(word: word) }
+    let(:word) { "hangman" }
+    let(:guess) { 'a' }
+    before { game.submit_guess(guess) }
+
+    describe "making the same guess" do
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+  end
+
+  context "when I have a game that has made an incorrect guess" do
+    subject(:game) { Game.new(word: word) }
+    let(:word) { "hangman" }
+    let(:guess) { 'z' }
+    before { game.submit_guess(guess) }
+
+    describe "making the same guess" do
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+  end
 end

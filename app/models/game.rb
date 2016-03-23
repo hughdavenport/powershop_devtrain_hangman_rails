@@ -45,7 +45,7 @@ class Game < ActiveRecord::Base
   end
 
   def submit_guess(guess)
-    g = Guess.new(game: self, guess: guess);g.save
+    Guess.new(game: self, guess: guess).save
   end
   # Required for rails to allow this as a form entry
   attr_accessor :guess
