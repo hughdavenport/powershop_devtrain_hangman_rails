@@ -13,7 +13,7 @@ Feature: Playing a game
     Then I should see my guess
     And I should have 1 correct guess
     And I should have no incorrect guesses
-    And I should not have lost lives
+    And I should have lost no lives
 
   Scenario: Making an invalid guess
     Given I have a new game
