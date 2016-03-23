@@ -32,27 +32,27 @@ Feature: Playing a game
 
   Scenario: Almost wining a game
     Given I have almost won a game
-    When I guess an invalid guess
+    When I make an invalid guess
     Then I should not have won the game
     And I should not have lost the game
     And I should have lost 1 more life
 
   Scenario: Winning a game
     Given I have almost won a game
-    When I guess a valid guess
+    When I make a valid guess
     Then I should have won the game
     And I should not have lost the game
-    And I should not have lost more lives
+    And I should have lost no more lives
 
   Scenario: Almost losing a game
     Given I have almost lost a game
-    When I guess a valid guess
+    When I make a valid guess
     Then I should not have lost the game
     And I should not have won the game
-    And I should not have lost more lives
+    And I should have lost no more lives
 
   Scenario: Losing a game
     Given I have almost lost a game
-    When I guess an invalid guess
+    When I make an invalid guess
     Then I should have lost the game
     And I should not have won the game

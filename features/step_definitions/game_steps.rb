@@ -1,6 +1,6 @@
 TESTING_WORD = "powershop"
 STARTING_LIVES = 10
-VALID_GUESSES = TESTING_WORD.chars
+VALID_GUESSES = TESTING_WORD.chars.uniq
 INVALID_GUESSES = (("a".."z").to_a - VALID_GUESSES)
 
 When(/^I see the home page$/) do
@@ -50,7 +50,7 @@ Then(/^I should have (no|\d+) (in)?correct guess(es)?$/) do |number, incorrect, 
   expect(test).to be number.to_i
 end
 
-Then(/^I should have lost (no|\d+)? li(ves|fe)$/) do |number, plural_to_ignore|
+Then(/^I should have lost (no|\d+)? (more )?li(ves|fe)$/) do |number, more_to_ignore, plural_to_ignore|
   number = 0 if number == "no"
   lives = find('#livesleft').text.gsub(/^You have (\d+) lives left$/, '\\1').to_i
   expect(lives).to be (@lives - number.to_i)
@@ -58,4 +58,24 @@ end
 
 When(/^I make (\d+) (in)?valid guesses$/) do |number, invalid|
   number.to_i.times { step "I make a #{invalid}valid guess" }
+end
+
+Given(/^I have almost won a game$/) do
+  step "I have a new game"
+  step "I make #{VALID_GUESSES.count - 1} valid guesses"
+  @lives = @game.lives
+end
+
+Given(/^I have almost lost a game$/) do
+  step "I have a new game"
+  step "I make #{@lives - 1} invalid guesses"
+  @lives = @game.lives
+end
+
+Then(/^I should (not )?have (won|lost) the game$/) do |negation, state|
+  if negation
+    expect(page).not_to have_content(/You #{state}/)
+  else
+    expect(page).to have_content(/You #{state}/)
+  end
 end
