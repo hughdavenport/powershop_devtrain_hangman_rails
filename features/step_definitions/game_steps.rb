@@ -15,6 +15,7 @@ Then(/^I should see a new game$/) do
 	expect(page).to have_content(/Game was successfully created./)
 end
 
+
 Given(/^I have a new game$/) do
   @game = Game.new(word: TESTING_WORD)
   @game.save
@@ -22,11 +23,29 @@ Given(/^I have a new game$/) do
   visit url_for(@game)
 end
 
+Given(/^I have almost won a game$/) do
+  step "I have a new game"
+  step "I make #{VALID_GUESSES.count - 1} valid guesses"
+  @lives = @game.lives
+end
+
+Given(/^I have almost lost a game$/) do
+  step "I have a new game"
+  step "I make #{@lives - 1} invalid guesses"
+  @lives = @game.lives
+end
+
+
 When(/^I make a(n)? (in)?valid guess$/) do |plural_to_ignore, invalid|
   @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guesses).sample
   fill_in "game[guess]", :with => @guess
   click_on "Submit guess"
 end
+
+When(/^I make (\d+) (in)?valid guesses$/) do |number, invalid|
+  number.to_i.times { step "I make a #{invalid}valid guess" }
+end
+
 
 Then(/^I should see my guess$/) do
   within("#guesses") { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}([a-z] )*$/) }
@@ -54,22 +73,6 @@ Then(/^I should have lost (no|\d+)? (more )?li(ves|fe)$/) do |number, more_to_ig
   number = 0 if number == "no"
   lives = find('#livesleft').text.gsub(/^You have (\d+) lives left$/, '\\1').to_i
   expect(lives).to be (@lives - number.to_i)
-end
-
-When(/^I make (\d+) (in)?valid guesses$/) do |number, invalid|
-  number.to_i.times { step "I make a #{invalid}valid guess" }
-end
-
-Given(/^I have almost won a game$/) do
-  step "I have a new game"
-  step "I make #{VALID_GUESSES.count - 1} valid guesses"
-  @lives = @game.lives
-end
-
-Given(/^I have almost lost a game$/) do
-  step "I have a new game"
-  step "I make #{@lives - 1} invalid guesses"
-  @lives = @game.lives
 end
 
 Then(/^I should (not )?have (won|lost) the game$/) do |negation, state|
