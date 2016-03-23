@@ -55,3 +55,7 @@ Then(/^I should have lost (no|\d+)? li(ves|fe)$/) do |number, plural_to_ignore|
   lives = find('#livesleft').text.gsub(/^You have (\d+) lives left$/, '\\1').to_i
   expect(lives).to be (@lives - number.to_i)
 end
+
+When(/^I make (\d+) (in)?valid guesses$/) do |number, invalid|
+  number.to_i.times { step "I make a #{invalid}valid guess" }
+end
