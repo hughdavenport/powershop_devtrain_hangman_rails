@@ -222,6 +222,33 @@ RSpec.describe Game, type: :model do
         expect(subject).to be false
       end
     end
+
+    context "of an empty array" do
+      let(:guess) { [] }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+
+    context "of an single valid character array" do
+      let(:guess) { ['a'] }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+
+    context "of an multiple character array" do
+      let(:guess) { ['a', 'b'] }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
   end
 
   context "when I have a finished (lost) game" do
