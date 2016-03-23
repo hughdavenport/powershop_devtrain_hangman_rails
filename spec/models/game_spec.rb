@@ -174,4 +174,44 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  describe "making an invalid guess" do
+    subject(:game) { Game.new }
+
+    context "of a capital letter" do
+      let(:guess) { 'A' }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+
+    context "of a digit" do
+      let(:guess) { '1' }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+
+    context "of a non alpha-numeric character" do
+      let(:guess) { "~" }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+
+    context "of a multicharacter string" do
+      let(:guess) { "ab" }
+      subject { game.submit_guess(guess) }
+
+      it "should not be allowed" do
+        expect(subject).to be false
+      end
+    end
+  end
 end
