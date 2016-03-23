@@ -47,4 +47,7 @@ class Game < ActiveRecord::Base
   def submit_guess(guess)
     g = Guess.new(game: self, guess: guess);g.save
   end
+  # Required for rails to allow this as a form entry
+  attr_accessor :guess
+  alias_method :guess=, :submit_guess
 end

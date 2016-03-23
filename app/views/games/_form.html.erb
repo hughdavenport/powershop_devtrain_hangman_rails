@@ -11,7 +11,12 @@
     </div>
   <% end %>
 
+  <div class="guess">
+    <%= f.label :guess %>
+    <%= f.text_field :guess %>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit guess" %>
   </div>
 <% end %>
