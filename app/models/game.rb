@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
   after_initialize :set_default_values
-  has_many :guesses
+  has_many :guesses, dependent: :destroy
 
   DEFAULT_STARTING_LIVES = 10
   DEFAULT_STARTING_WORD  = "hangman"
