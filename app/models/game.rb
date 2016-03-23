@@ -2,13 +2,12 @@ class Game < ActiveRecord::Base
   after_initialize :set_default_values
   has_many :guesses
 
-  DEFAULT_STARTING_SCORE = 10
+  DEFAULT_STARTING_LIVES = 10
   DEFAULT_STARTING_WORD  = "hangman"
 
   def set_default_values
-    self.starting_score ||= DEFAULT_STARTING_SCORE
+    self.starting_lives ||= DEFAULT_STARTING_LIVES
     self.word           ||= DEFAULT_STARTING_WORD
-    self.guesses        ||= []
   end
 
   def word_guessed_so_far
@@ -28,7 +27,7 @@ class Game < ActiveRecord::Base
   end
 
   def lives
-    self.starting_score - incorrect_guesses.length
+    self.starting_lives - incorrect_guesses.length
   end
 
   def guesses

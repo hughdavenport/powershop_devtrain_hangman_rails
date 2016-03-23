@@ -4,7 +4,7 @@ RSpec.describe Game, type: :model do
   context "when I create a new game" do
     context "with no arguments" do
       subject(:game) { Game.new }
-      let(:default_starting_score) { 10 }
+      let(:default_starting_lives) { 10 }
       let(:default_word)           { "hangman" }
 
       describe "the game" do
@@ -17,7 +17,7 @@ RSpec.describe Game, type: :model do
         subject { game.lives }
 
         it "should be the default" do
-          is_expected.to eql default_starting_score
+          is_expected.to eql default_starting_lives
         end
       end
 
@@ -53,7 +53,7 @@ RSpec.describe Game, type: :model do
 
     context "with an argument for the starting score" do
       let(:argument) { 1 }
-      subject(:game) { Game.new(starting_score: argument) }
+      subject(:game) { Game.new(starting_lives: argument) }
 
       describe "#lives" do
         subject { game.lives }
@@ -66,7 +66,7 @@ RSpec.describe Game, type: :model do
   end
 
   context "when I have a new game with 1 life left" do
-    subject(:game) { Game.new(word: word, starting_score: 1) }
+    subject(:game) { Game.new(word: word, starting_lives: 1) }
     let(:word) { "hangman" }
 
     context "and I make an incorrect guess" do
