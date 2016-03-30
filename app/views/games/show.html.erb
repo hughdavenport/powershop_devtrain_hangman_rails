@@ -3,9 +3,9 @@
 <p id="finishedstate"><% if @game.finished? %><div id="gameover">GAME OVER!</div><div id="winstate"><%= @game.won?? "You won" : "You lost" %></div><% end %></p>
 <p id="livesleft">You have <%= @game.lives %> lives left </p>
 <p id="guessed_word">Currently guessed word is: <%= @game.word_guessed_so_far.map { |char| char ? char : " _ " }.join %></p>
-<p id="guesses">You have guessed: <%= @game.guesses.join(" ") %></p>
+<p id="guesses">You have guessed: <%= @game.guesses_array.join(" ") %></p>
 
-<%= render 'form' %>
+<%= render 'guesses/form' %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

@@ -37,8 +37,8 @@ end
 
 
 When(/^I make a(n)? (in)?valid guess$/) do |plural_to_ignore, invalid|
-  @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guesses).sample
-  fill_in "game[guess]", :with => @guess
+  @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guesses_array).sample
+  fill_in "guess[guess]", :with => @guess
   click_on "Submit guess"
 end
 
@@ -48,7 +48,7 @@ end
 
 
 Then(/^I should see my guess$/) do
-  within("#guesses") { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}([a-z] )*$/) }
+  within("#guesses") { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}( [a-z])*$/) }
 end
 
 Then(/^I should have (no|\d+) (in)?correct guess(es)?$/) do |number, incorrect, plural_to_ignore|

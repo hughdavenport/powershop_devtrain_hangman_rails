@@ -32,7 +32,7 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
-        format.html { render :edit }
+        format.html { render :show }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
@@ -56,6 +56,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:guess)
+      params.require(:game).permit()
     end
 end

@@ -66,7 +66,7 @@ RSpec.describe Game, type: :model do
   end
 
   context "when I have a new game with 1 life left" do
-    subject(:game) { Game.new(word: word, starting_lives: 1) }
+    subject(:game) { Game.new(word: word, starting_lives: 1).tap { |g| g.save } }
     let(:word) { "hangman" }
 
     context "and I make an incorrect guess" do
@@ -105,7 +105,7 @@ RSpec.describe Game, type: :model do
   end
 
   context "when I have a game with the word almost guessed and three incorrect guesses" do
-    subject(:game) { Game.new(word: word) }
+    subject(:game) { Game.new(word: word).tap { |g| g.save } }
     let(:word) { "hangman" }
     let(:guesses) { ["e", "g", "m", "s", "n", "h", "r"] }
     before { guesses.each { |guess| game.submit_guess(guess) } }
@@ -146,7 +146,7 @@ RSpec.describe Game, type: :model do
   end
 
   context "when I have a game that has made a correct guess" do
-    subject(:game) { Game.new(word: word) }
+    subject(:game) { Game.new(word: word).tap { |g| g.save } }
     let(:word) { "hangman" }
     let(:guess) { 'a' }
     before { game.submit_guess(guess) }
@@ -155,13 +155,13 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
   end
 
   context "when I have a game that has made an incorrect guess" do
-    subject(:game) { Game.new(word: word) }
+    subject(:game) { Game.new(word: word).tap { |g| g.save } }
     let(:word) { "hangman" }
     let(:guess) { 'z' }
     before { game.submit_guess(guess) }
@@ -170,20 +170,20 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
   end
 
   describe "making an invalid guess" do
-    subject(:game) { Game.new }
+    subject(:game) { Game.new.tap { |g| g.save } }
 
     context "of a capital letter" do
       let(:guess) { 'A' }
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
 
@@ -192,7 +192,7 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
 
@@ -201,7 +201,7 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
 
@@ -210,7 +210,7 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
 
@@ -219,7 +219,7 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
 
@@ -228,7 +228,7 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
 
@@ -237,7 +237,7 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
 
@@ -246,26 +246,26 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
   end
 
   context "when I have a finished (lost) game" do
-    subject(:game) { Game.new(starting_lives: 0) }
+    subject(:game) { Game.new(starting_lives: 0).tap { |g| g.save } }
 
     describe "making a guess" do
       let(:guess) { 'a' }
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
   end
 
   context "when I have a finished (won) game" do
-    subject(:game) { Game.new(word: word) }
+    subject(:game) { Game.new(word: word).tap { |g| g.save } }
     let(:word) { "hangman" }
     let(:guesses) { ["h", "a", "n", "g", "m"] }
     before { guesses.each { |guess| game.submit_guess(guess) } }
@@ -275,7 +275,7 @@ RSpec.describe Game, type: :model do
       subject { game.submit_guess(guess) }
 
       it "should not be allowed" do
-        expect(subject).to be false
+        expect(subject).not_to be_valid
       end
     end
   end

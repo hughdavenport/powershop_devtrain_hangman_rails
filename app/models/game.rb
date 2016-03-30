@@ -11,7 +11,7 @@ class Game < ActiveRecord::Base
   end
 
   def word_guessed_so_far
-    word.chars.map { |character| character if guesses.include?(character) }
+    word.chars.map { |character| character if guesses_array.include?(character) }
   end
 
   def won?
@@ -30,21 +30,22 @@ class Game < ActiveRecord::Base
     self.starting_lives - incorrect_guesses.length
   end
 
-  def guesses
+  # TODO, should we be overriding this?
+  def guesses_array
     # Call the active record relation, and just get out the guess character, and join into an array
-    super.all.map { |guess| guess.guess }
+    guesses.all.map { |guess| guess.guess }
   end
 
   def correct_guesses
-    guesses - incorrect_guesses
+    guesses_array - incorrect_guesses
   end
 
   def incorrect_guesses
-    guesses - word.chars
+    guesses_array - word.chars
   end
 
   def submit_guess(guess)
-    Guess.new(game: self, guess: guess).save
+    self.guesses.create(guess: guess)
   end
   # Required for rails to allow this as a form entry
   attr_accessor :guess
