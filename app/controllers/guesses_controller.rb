@@ -32,7 +32,7 @@ class GuessesController < ApplicationController
         format.html { redirect_to @game, notice: 'Guess was successfully created.' }
         format.json { render :show, status: :created, location: @guess }
       else
-        format.html { redirect_to @game, errors: @guess.errors }
+        format.html { render "games/show", object: @game }
         format.json { render json: @guess.errors, status: :unprocessable_entity }
       end
     end

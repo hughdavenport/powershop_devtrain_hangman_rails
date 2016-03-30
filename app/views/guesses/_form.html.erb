@@ -1,10 +1,10 @@
 <%= form_for([@game, @game.guesses.build]) do |f| %>
-  <% if @game.errors.any? %>
+  <% if @guess and @guess.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this guess from being saved:</h2>
+      <h2><%= pluralize(@guess.errors.count, "error") %> prohibited this guess from being saved:</h2>
 
       <ul>
-      <% @game.errors.full_messages.each do |message| %>
+      <% @guess.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
