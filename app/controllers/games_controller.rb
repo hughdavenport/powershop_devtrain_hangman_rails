@@ -12,11 +12,19 @@ class GamesController < ApplicationController
   def show
   end
 
-  # GET /games/new
-  def new
-    @game = Game.new
-    if @game.save
-      redirect_to @game, notice: 'Game was successfully created.'
+  # POST /games
+  # POST /games.json
+  def create
+    @game = Game.new # No params, just a fresh game
+
+    respond_to do |format|
+      if @game.save
+        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.json { render :show, status: :ok, location: @game }
+      else
+        format.html { render :new } # not edit as no params, shouldn't happen
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -34,10 +42,5 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def game_params
-      params.require(:game).permit()
     end
 end

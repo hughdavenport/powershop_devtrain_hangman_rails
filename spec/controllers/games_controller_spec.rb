@@ -46,12 +46,24 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new game as @game" do
-      get :new, {}, valid_session
-      # TODO fails now as we do save in new
-      pending "TODO fails now as we do save in new"
-      expect(assigns(:game)).to be_a_new(Game)
+  describe "POST #create" do
+    context "with valid params" do
+      it "creates a new Game" do
+        expect {
+          post :create, {:game => valid_attributes}, valid_session
+        }.to change(Game, :count).by(1)
+      end
+
+      it "assigns a newly created game as @game" do
+        post :create, {:game => valid_attributes}, valid_session
+        expect(assigns(:game)).to be_a(Game)
+        expect(assigns(:game)).to be_persisted
+      end
+
+      it "redirects to the created game" do
+        post :create, {:game => valid_attributes}, valid_session
+        expect(response).to redirect_to(Game.last)
+      end
     end
   end
 
