@@ -24,12 +24,14 @@ RSpec.describe GuessesController, type: :controller do
   # Guess. As you add validations to Guess, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { guess: 'a' }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { guess: nil }
   }
+
+  let(:game) { Game.create }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -40,31 +42,31 @@ RSpec.describe GuessesController, type: :controller do
     context "with valid params" do
       it "creates a new Guess" do
         expect {
-          post :create, {:guess => valid_attributes}, valid_session
+          post :create, {:game_id => game, :guess => valid_attributes}, valid_session
         }.to change(Guess, :count).by(1)
       end
 
       it "assigns a newly created guess as @guess" do
-        post :create, {:guess => valid_attributes}, valid_session
+        post :create, {:game_id => game, :guess => valid_attributes}, valid_session
         expect(assigns(:guess)).to be_a(Guess)
         expect(assigns(:guess)).to be_persisted
       end
 
-      it "redirects to the created guess" do
-        post :create, {:guess => valid_attributes}, valid_session
-        expect(response).to redirect_to(Guess.last)
+      it "redirects to the game" do
+        post :create, {:game_id => game, :guess => valid_attributes}, valid_session
+        expect(response).to redirect_to(game)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved guess as @guess" do
-        post :create, {:guess => invalid_attributes}, valid_session
+        post :create, {:game_id => game, :guess => invalid_attributes}, valid_session
         expect(assigns(:guess)).to be_a_new(Guess)
       end
 
-      it "re-renders the 'new' template" do
-        post :create, {:guess => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+      it "re-renders the 'games/show' template" do
+        post :create, {:game_id => game, :guess => invalid_attributes}, valid_session
+        expect(response).to render_template("games/show")
       end
     end
   end
