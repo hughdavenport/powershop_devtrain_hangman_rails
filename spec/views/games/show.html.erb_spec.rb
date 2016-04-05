@@ -34,6 +34,17 @@ RSpec.describe "games/show", type: :view do
 
   let(:new_game) { Game.create!(word: word) }
 
+  let(:won_game) do
+    new_game.tap do |game|
+      word.chars.each { |guess| game.submit_guess(guess) }
+    end
+  end
+
+  let(:lost_game) do
+    new_game.tap do |game|
+      (('a'..'z').to_a - word.chars).sample(10).each { |guess| game.submit_guess(guess) }
+    end
+  end
 
   context "with a new game" do
     before do
@@ -55,6 +66,38 @@ RSpec.describe "games/show", type: :view do
 
     it "should not be finished" do
       expect(finished_state).to be_empty
+    end
+  end
+
+  context "with a finished game" do
+    context "that is won" do
+      before do
+        @game = assign(:game, won_game)
+        render
+      end
+
+      it "should display a finished state" do
+        expect(finished_state).to include("GAME OVER")
+      end
+
+      it "should display a winning message" do
+        expect(finished_state).to include("You won")
+      end
+    end
+
+    context "that is lost" do
+      before do
+        @game = assign(:game, lost_game)
+        render
+      end
+
+      it "should display a finished state" do
+        expect(finished_state).not_to be_empty
+      end
+
+      it "should display a losing message" do
+        expect(finished_state).to include("You lost")
+      end
     end
   end
 end
