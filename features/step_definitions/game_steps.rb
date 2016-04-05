@@ -8,9 +8,9 @@ GUESSED_WORD_SELECTOR   = "#guessed_word"
 GUESSES_SELECTOR        = "#guesses"
 
 LIVES_LEFT_SINGULAR_REGEX = /\AYou have (?<lives>1) life left\z/
-LIVES_LEFT_MULTIPLE_REGEX = /\AYou have (?<lives>\d+) lives left\z/
+LIVES_LEFT_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives left\z/
 LIVES_LEFT_REGEX = Regexp.union(LIVES_LEFT_SINGULAR_REGEX,
-                                LIVES_LEFT_MULTIPLE_REGEX)
+                                LIVES_LEFT_PLURAL_REGEX)
 
 When(/^I see the home page$/) do
   visit root_path
