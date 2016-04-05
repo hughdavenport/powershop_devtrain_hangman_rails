@@ -6,6 +6,11 @@ STARTING_LIVES = 10
 VALID_GUESSES = TESTING_WORD.chars.uniq
 INVALID_GUESSES = (("a".."z").to_a - VALID_GUESSES)
 
+LIVES_LEFT_SELECTOR     = "#livesleft"
+GUESSED_WORD_SELECTOR   = "#guessed_word"
+GUESSES_SELECTOR        = "#guesses"
+FINISHED_STATE_SELECTOR = "#finishedstate"
+
 LIVES_LEFT_REGEX   = /\AYou have (\d+) lives left\z/
 GUESSED_WORD_REGEX = /\ACurrently guessed word is:(.*)\z/
 GUESSES_REGEX      = /\AYou have guessed:(.*)\z/
@@ -15,23 +20,23 @@ def find(selector)
 end
 
 def lives_left
-  find('#livesleft').match(LIVES_LEFT_REGEX)[1].to_i
+  find(LIVES_LEFT_SELECTOR).match(LIVES_LEFT_REGEX)[1].to_i
 end
 
 def guessed_word
-  find('#guessed_word').match(GUESSED_WORD_REGEX)[1]
-                       .gsub(/ /, '')
-                       .chars.map { |character| character unless character == '_' }
+  find(GUESSED_WORD_SELECTOR).match(GUESSED_WORD_REGEX)[1]
+                             .gsub(/ /, '')
+                             .chars.map { |character| character unless character == '_' }
 end
 
 def guesses
-  find('#guesses').match(GUESSES_REGEX)[1]
-                  .gsub(/ /, '')
-                  .chars
+  find(GUESSES_SELECTOR).match(GUESSES_REGEX)[1]
+                        .gsub(/ /, '')
+                        .chars
 end
 
 def finished_state
-  find('#finishedstate')
+  find(FINISHED_STATE_SELECTOR)
 end
 
 def make_correct_guess(game)
