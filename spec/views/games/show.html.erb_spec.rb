@@ -31,26 +31,15 @@ end
 
 RSpec.describe "games/show", type: :view do
   let(:word) { "hangman" }
-
   let(:new_game) { Game.create!(word: word) }
 
-  let(:won_game) do
-    new_game.tap do |game|
-      word.chars.each { |guess| game.submit_guess(guess) }
-    end
-  end
-
-  let(:lost_game) do
-    new_game.tap do |game|
-      (('a'..'z').to_a - word.chars).sample(10).each { |guess| game.submit_guess(guess) }
-    end
+  before do
+    @game = assign(:game, game)
+    render
   end
 
   context "with a new game" do
-    before do
-      @game = assign(:game, new_game)
-      render
-    end
+    let(:game) { new_game }
 
     it "should show 10 lives left" do
       expect(lives_left).to be 10
@@ -71,9 +60,10 @@ RSpec.describe "games/show", type: :view do
 
   context "with a finished game" do
     context "that is won" do
-      before do
-        @game = assign(:game, won_game)
-        render
+      let(:game) do
+        new_game.tap do |game|
+          word.chars.each { |guess| game.submit_guess(guess) }
+        end
       end
 
       it "should display a finished state" do
@@ -86,9 +76,10 @@ RSpec.describe "games/show", type: :view do
     end
 
     context "that is lost" do
-      before do
-        @game = assign(:game, lost_game)
-        render
+      let(:game) do
+        new_game.tap do |game|
+          (('a'..'z').to_a - word.chars).sample(10).each { |guess| game.submit_guess(guess) }
+        end
       end
 
       it "should display a finished state" do
