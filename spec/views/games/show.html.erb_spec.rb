@@ -89,8 +89,9 @@ RSpec.describe "games/show", type: :view do
       end
     end
 
-    it "should display lives left as singluar" do
+    it "should display lives left as singluar 1 life" do
       expect(find(LIVES_LEFT_SELECTOR)).to match LIVES_LEFT_SINGULAR_REGEX
+      expect(lives_left).to be 1
     end
   end
 
@@ -124,6 +125,11 @@ RSpec.describe "games/show", type: :view do
 
       it "should display a losing message" do
         expect(finished_state).to include("You lost")
+      end
+
+      it "should display lives left as plural 0 lives" do
+        expect(find(LIVES_LEFT_SELECTOR)).to match LIVES_LEFT_MULTIPLE_REGEX
+        expect(lives_left).to be 0
       end
     end
   end
