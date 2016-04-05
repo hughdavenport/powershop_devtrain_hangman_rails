@@ -25,7 +25,7 @@ def guesses
                   .chars
 end
 
-def finished
+def finished_state
   find('#finishedstate')
 end
 
@@ -62,7 +62,7 @@ RSpec.describe "games/show", type: :view do
     it "should not be finished" do
       render
 
-      expect(finished).to be_empty
+      expect(finished_state).to be_empty
     end
   end
 end
