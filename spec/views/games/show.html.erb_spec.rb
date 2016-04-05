@@ -11,7 +11,11 @@ GUESSED_WORD_SELECTOR   = "#guessed_word"
 GUESSES_SELECTOR        = "#guesses"
 FINISHED_STATE_SELECTOR = "#finishedstate"
 
-LIVES_LEFT_REGEX   = /\AYou have (\d+) lives left\z/
+LIVES_LEFT_SINGULAR_REGEX = /\AYou have (?<lives>1) life left\z/
+LIVES_LEFT_MULTIPLE_REGEX = /\AYou have (?<lives>\d+) lives left\z/
+LIVES_LEFT_REGEX = Regexp.union(LIVES_LEFT_SINGULAR_REGEX,
+                                LIVES_LEFT_MULTIPLE_REGEX)
+
 GUESSED_WORD_REGEX = /\ACurrently guessed word is:(.*)\z/
 GUESSES_REGEX      = /\AYou have guessed:(.*)\z/
 
@@ -20,7 +24,7 @@ def find(selector)
 end
 
 def lives_left
-  find(LIVES_LEFT_SELECTOR).match(LIVES_LEFT_REGEX)[1].to_i
+  find(LIVES_LEFT_SELECTOR).match(LIVES_LEFT_REGEX)[:lives].to_i
 end
 
 def guessed_word
@@ -75,6 +79,18 @@ RSpec.describe "games/show", type: :view do
 
     it "should not be finished" do
       expect(finished_state).to be_empty
+    end
+  end
+
+  context "with a game with 1 live left" do
+    let(:game) do
+      new_game.tap do |game|
+        (STARTING_LIVES - 1).times { make_incorrect_guess(game) }
+      end
+    end
+
+    it "should display lives left as singluar" do
+      expect(find(LIVES_LEFT_SELECTOR)).to match LIVES_LEFT_SINGULAR_REGEX
     end
   end
 
