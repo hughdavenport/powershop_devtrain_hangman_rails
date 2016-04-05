@@ -30,38 +30,30 @@ def finished_state
 end
 
 RSpec.describe "games/show", type: :view do
-  before(:each) do
-    @game = assign(:game, Game.create!())
-  end
+  let(:word) { "hangman" }
 
-  it "renders attributes in <p>" do
-    render
-  end
+  let(:new_game) { Game.create!(word: word) }
+
 
   context "with a new game" do
-    before { @game = assign(:game, Game.create!()) }
+    before do
+      @game = assign(:game, new_game)
+      render
+    end
 
     it "should show 10 lives left" do
-      render
-
       expect(lives_left).to be 10
     end
 
     it "should have an empty guessed word" do
-      render
-
       expect(guessed_word.compact).to be_empty
     end
 
     it "should not have any guesses" do
-      render
-
       expect(guesses).to be_empty
     end
 
     it "should not be finished" do
-      render
-
       expect(finished_state).to be_empty
     end
   end
