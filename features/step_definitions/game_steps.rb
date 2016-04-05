@@ -3,6 +3,15 @@ STARTING_LIVES = 10
 VALID_GUESSES = TESTING_WORD.chars.uniq
 INVALID_GUESSES = (("a".."z").to_a - VALID_GUESSES)
 
+LIVES_LEFT_SELECTOR     = "#livesleft"
+GUESSED_WORD_SELECTOR   = "#guessed_word"
+GUESSES_SELECTOR        = "#guesses"
+
+LIVES_LEFT_SINGULAR_REGEX = /\AYou have (?<lives>1) life left\z/
+LIVES_LEFT_MULTIPLE_REGEX = /\AYou have (?<lives>\d+) lives left\z/
+LIVES_LEFT_REGEX = Regexp.union(LIVES_LEFT_SINGULAR_REGEX,
+                                LIVES_LEFT_MULTIPLE_REGEX)
+
 When(/^I see the home page$/) do
   visit root_path
 end
@@ -48,20 +57,20 @@ end
 
 
 Then(/^I should see my guess$/) do
-  within("#guesses") { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}( [a-z])*$/) }
+  within(GUESSES_SELECTOR) { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}( [a-z])*$/) }
 end
 
 Then(/^I should have (no|\d+) (in)?correct guess(es)?$/) do |number, incorrect, plural_to_ignore|
   number = 0 if number == "no"
-  correct_guesses = find('#guessed_word').text
-                                         .gsub(/^.*:/, '')
-                                         .gsub(/[ _]/, '')
-                                         .chars.uniq
+  correct_guesses = find(GUESSED_WORD_SELECTOR).text
+                                               .gsub(/^.*:/, '')
+                                               .gsub(/[ _]/, '')
+                                               .chars.uniq
   if incorrect
-    all_guesses = find('#guesses').text
-                                 .gsub(/^.*:/, '')
-                                 .gsub(/ /, '')
-                                 .chars.uniq
+    all_guesses = find(GUESSES_SELECTOR).text
+                                        .gsub(/^.*:/, '')
+                                        .gsub(/ /, '')
+                                        .chars.uniq
     test = (all_guesses - correct_guesses).count
   else
     test = correct_guesses.count
@@ -71,7 +80,7 @@ end
 
 Then(/^I should have lost (no|\d+)? (more )?li(ves|fe)$/) do |number, more_to_ignore, plural_to_ignore|
   number = 0 if number == "no"
-  lives = find('#livesleft').text.gsub(/^You have (\d+) lives left$/, '\\1').to_i
+  lives = find(LIVES_LEFT_SELECTOR).text.gsub(LIVES_LEFT_REGEX, '\\k<lives>').to_i
   expect(lives).to be (@lives - number.to_i)
 end
 
