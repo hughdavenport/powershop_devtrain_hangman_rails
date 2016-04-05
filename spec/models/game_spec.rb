@@ -65,7 +65,7 @@ RSpec.describe Game, type: :model do
     end
   end
 
-  context "when I have a new game with 1 life left" do
+  context "when I have a new game with 1 life remaining" do
     subject(:game) { Game.new(word: word, starting_lives: 1).tap { |g| g.save } }
     let(:word) { "hangman" }
 

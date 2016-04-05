@@ -6,7 +6,7 @@
     <div id="winstate"><%= @game.won?? "You won" : "You lost" %></div>
   <% end %>
 </div>
-<p id="livesleft">You have <%= pluralize(@game.lives, "life") %> left </p>
+<p id="livesremaining">You have <%= pluralize(@game.lives, "life") %> remaining </p>
 <p id="guessed_word">Currently guessed word is: <%= @game.word_guessed_so_far.map { |char| char ? char : " _ " }.join %></p>
 <p id="guesses">You have guessed: <%= @game.guesses_array.join(" ") %></p>
 

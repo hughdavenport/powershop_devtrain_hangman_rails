@@ -3,14 +3,14 @@ STARTING_LIVES = 10
 VALID_GUESSES = TESTING_WORD.chars.uniq
 INVALID_GUESSES = (("a".."z").to_a - VALID_GUESSES)
 
-LIVES_LEFT_SELECTOR     = "#livesleft"
-GUESSED_WORD_SELECTOR   = "#guessed_word"
-GUESSES_SELECTOR        = "#guesses"
+LIVES_REMAINING_SELECTOR = "#livesremaining"
+GUESSED_WORD_SELECTOR    = "#guessed_word"
+GUESSES_SELECTOR         = "#guesses"
 
-LIVES_LEFT_SINGULAR_REGEX = /\AYou have (?<lives>1) life left\z/
-LIVES_LEFT_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives left\z/
-LIVES_LEFT_REGEX = Regexp.union(LIVES_LEFT_SINGULAR_REGEX,
-                                LIVES_LEFT_PLURAL_REGEX)
+LIVES_REMAINING_SINGULAR_REGEX = /\AYou have (?<lives>1) life remaining\z/
+LIVES_REMAINING_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives remaining\z/
+LIVES_REMAINING_REGEX = Regexp.union(LIVES_REMAINING_SINGULAR_REGEX,
+                                LIVES_REMAINING_PLURAL_REGEX)
 
 When(/^I see the home page$/) do
   visit root_path
@@ -80,7 +80,7 @@ end
 
 Then(/^I should have lost (no|\d+)? (more )?li(ves|fe)$/) do |number, more_to_ignore, plural_to_ignore|
   number = 0 if number == "no"
-  lives = find(LIVES_LEFT_SELECTOR).text.gsub(LIVES_LEFT_REGEX, '\\k<lives>').to_i
+  lives = find(LIVES_REMAINING_SELECTOR).text.gsub(LIVES_REMAINING_REGEX, '\\k<lives>').to_i
   expect(lives).to be (@lives - number.to_i)
 end
 

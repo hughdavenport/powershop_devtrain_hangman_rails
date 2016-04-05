@@ -6,15 +6,15 @@ STARTING_LIVES = 10
 VALID_GUESSES = TESTING_WORD.chars.uniq
 INVALID_GUESSES = (("a".."z").to_a - VALID_GUESSES)
 
-LIVES_LEFT_SELECTOR     = "#livesleft"
-GUESSED_WORD_SELECTOR   = "#guessed_word"
-GUESSES_SELECTOR        = "#guesses"
-FINISHED_STATE_SELECTOR = "#finishedstate"
+LIVES_REMAINING_SELECTOR = "#livesremaining"
+GUESSED_WORD_SELECTOR    = "#guessed_word"
+GUESSES_SELECTOR         = "#guesses"
+FINISHED_STATE_SELECTOR  = "#finishedstate"
 
-LIVES_LEFT_SINGULAR_REGEX = /\AYou have (?<lives>1) life left\z/
-LIVES_LEFT_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives left\z/
-LIVES_LEFT_REGEX = Regexp.union(LIVES_LEFT_SINGULAR_REGEX,
-                                LIVES_LEFT_PLURAL_REGEX)
+LIVES_REMAINING_SINGULAR_REGEX = /\AYou have (?<lives>1) life remaining\z/
+LIVES_REMAINING_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives remaining\z/
+LIVES_REMAINING_REGEX = Regexp.union(LIVES_REMAINING_SINGULAR_REGEX,
+                                     LIVES_REMAINING_PLURAL_REGEX)
 
 GUESSED_WORD_REGEX = /\ACurrently guessed word is:(.*)\z/
 GUESSES_REGEX      = /\AYou have guessed:(.*)\z/
@@ -23,8 +23,8 @@ def find(selector)
   Capybara.string(rendered).find(selector).text.strip
 end
 
-def lives_left
-  find(LIVES_LEFT_SELECTOR).match(LIVES_LEFT_REGEX)[:lives].to_i
+def lives_remaining
+  find(LIVES_REMAINING_SELECTOR).match(LIVES_REMAINING_REGEX)[:lives].to_i
 end
 
 def guessed_word
@@ -65,8 +65,8 @@ RSpec.describe "games/show", type: :view do
   context "with a new game" do
     let(:game) { new_game }
 
-    it "should show #{STARTING_LIVES} lives left" do
-      expect(lives_left).to be STARTING_LIVES
+    it "should show #{STARTING_LIVES} lives remaining" do
+      expect(lives_remaining).to be STARTING_LIVES
     end
 
     it "should have an empty guessed word" do
@@ -82,29 +82,29 @@ RSpec.describe "games/show", type: :view do
     end
   end
 
-  context "with a game with 2 live left" do
+  context "with a game with 2 live remaining" do
     let(:game) do
       new_game.tap do |game|
         (STARTING_LIVES - 2).times { make_incorrect_guess(game) }
       end
     end
 
-    it "should display lives left as plural 2 life" do
-      expect(find(LIVES_LEFT_SELECTOR)).to match LIVES_LEFT_PLURAL_REGEX
-      expect(lives_left).to be 2
+    it "should display lives remaining as plural 2 life" do
+      expect(find(LIVES_REMAINING_SELECTOR)).to match LIVES_REMAINING_PLURAL_REGEX
+      expect(lives_remaining).to be 2
     end
   end
 
-  context "with a game with 1 live left" do
+  context "with a game with 1 live remaining" do
     let(:game) do
       new_game.tap do |game|
         (STARTING_LIVES - 1).times { make_incorrect_guess(game) }
       end
     end
 
-    it "should display lives left as singluar 1 life" do
-      expect(find(LIVES_LEFT_SELECTOR)).to match LIVES_LEFT_SINGULAR_REGEX
-      expect(lives_left).to be 1
+    it "should display lives remaining as singluar 1 life" do
+      expect(find(LIVES_REMAINING_SELECTOR)).to match LIVES_REMAINING_SINGULAR_REGEX
+      expect(lives_remaining).to be 1
     end
   end
 
@@ -140,9 +140,9 @@ RSpec.describe "games/show", type: :view do
         expect(finished_state).to include("You lost")
       end
 
-      it "should display lives left as plural 0 lives" do
-        expect(find(LIVES_LEFT_SELECTOR)).to match LIVES_LEFT_PLURAL_REGEX
-        expect(lives_left).to be 0
+      it "should display lives remaining as plural 0 lives" do
+        expect(find(LIVES_REMAINING_SELECTOR)).to match LIVES_REMAINING_PLURAL_REGEX
+        expect(lives_remaining).to be 0
       end
     end
   end
