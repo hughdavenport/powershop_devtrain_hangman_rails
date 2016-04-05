@@ -1,6 +1,11 @@
 require 'rails_helper'
 require 'capybara/rspec'
 
+TESTING_WORD = "powershop"
+STARTING_LIVES = 10
+VALID_GUESSES = TESTING_WORD.chars.uniq
+INVALID_GUESSES = (("a".."z").to_a - VALID_GUESSES)
+
 LIVES_LEFT_REGEX   = /\AYou have (\d+) lives left\z/
 GUESSED_WORD_REGEX = /\ACurrently guessed word is:(.*)\z/
 GUESSES_REGEX      = /\AYou have guessed:(.*)\z/
@@ -29,9 +34,19 @@ def finished_state
   find('#finishedstate')
 end
 
+def make_correct_guess(game)
+  guess = (VALID_GUESSES - game.guesses_array).sample
+  game.submit_guess(guess)
+end
+
+def make_incorrect_guess(game)
+  guess = (INVALID_GUESSES - game.guesses_array).sample
+  game.submit_guess(guess)
+end
+
 RSpec.describe "games/show", type: :view do
   let(:word) { "hangman" }
-  let(:new_game) { Game.create!(word: word) }
+  let(:new_game) { Game.create!(word: TESTING_WORD) }
 
   before do
     @game = assign(:game, game)
@@ -41,8 +56,8 @@ RSpec.describe "games/show", type: :view do
   context "with a new game" do
     let(:game) { new_game }
 
-    it "should show 10 lives left" do
-      expect(lives_left).to be 10
+    it "should show #{STARTING_LIVES} lives left" do
+      expect(lives_left).to be STARTING_LIVES
     end
 
     it "should have an empty guessed word" do
@@ -62,7 +77,7 @@ RSpec.describe "games/show", type: :view do
     context "that is won" do
       let(:game) do
         new_game.tap do |game|
-          word.chars.each { |guess| game.submit_guess(guess) }
+          STARTING_LIVES.times { make_correct_guess(game) }
         end
       end
 
@@ -78,7 +93,7 @@ RSpec.describe "games/show", type: :view do
     context "that is lost" do
       let(:game) do
         new_game.tap do |game|
-          (('a'..'z').to_a - word.chars).sample(10).each { |guess| game.submit_guess(guess) }
+          STARTING_LIVES.times { make_incorrect_guess(game) }
         end
       end
 
