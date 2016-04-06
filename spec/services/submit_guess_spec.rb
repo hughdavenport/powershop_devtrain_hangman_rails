@@ -8,10 +8,10 @@ RSpec.describe SubmitGuess, type: :service do
 
   subject(:submit_guess) { SubmitGuess.new(game, letter) }
 
-  context "making a valid guess" do
+  context "submitting a valid guess" do
     let(:letter) { "a" }
 
-    it "returns true" do
+    it "succeeds" do
       expect(submit_guess.call).to be true
       # todo check actually saves
       # expect .to_change
@@ -24,31 +24,120 @@ RSpec.describe SubmitGuess, type: :service do
     end
   end
 
-  context "making an invalid guess" do
-    let(:letter) { "!" }
+  describe "submitting an invalid guess" do
+    context "of a capital letter" do
+      let(:letter) { 'A' }
 
-    it "returns false" do
-      expect(submit_guess.call).to be false
-      # negate all comments :)
-      # todo check actually saves
-      # expect .to_change
-      # .last
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
     end
 
-    it "has errors" do
-      submit_guess.call
-      expect(submit_guess.errors).not_to be_empty
+    context "of a digit" do
+      let(:letter) { '1' }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+
+    context "of a non alpha-numeric character" do
+      let(:letter) { "~" }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+
+    context "of an empty string" do
+      let(:letter) { "" }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+
+    context "of a multicharacter string" do
+      let(:letter) { "ab" }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+
+    context "of an empty array" do
+      let(:letter) { [] }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+
+    context "of an single valid character array" do
+      let(:letter) { ['a'] }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+
+    context "of an multiple character array" do
+      let(:letter) { ['a', 'b'] }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
     end
   end
 
-  context "when I have a game that has made a guess" do
+  context "when I have a game that has one guess" do
     before { SubmitGuess.new(game, letter).call }
 
     context "that is correct" do
       let(:letter) { 'a' }
 
-      describe "making the same guess" do
-        it "returns false" do
+      describe "submitting the same guess" do
+        it "fails" do
           expect(submit_guess.call).to be false
         end
 
@@ -62,8 +151,8 @@ RSpec.describe SubmitGuess, type: :service do
     context "that is incorrect" do
       let(:letter) { 'z' }
 
-      describe "making the same guess" do
-        it "returns false" do
+      describe "submitting the same guess" do
+        it "fails" do
           expect(submit_guess.call).to be false
         end
 
