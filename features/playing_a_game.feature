@@ -5,7 +5,16 @@ Feature: Playing a game
   Scenario: Starting a game
     Given I see the home page
     When I click "New Game"
+    And I click "Create Game"
     Then I should see a new game
+
+  Scenario: Starting a game with different starting lives
+    Given I see the home page
+    When I click "New Game"
+    And I enter 5 as starting lives
+    And I click "Create Game"
+    Then I should see a new game
+    And I should have 5 lives left
 
   Scenario: Making a valid guess
     Given I have a new game

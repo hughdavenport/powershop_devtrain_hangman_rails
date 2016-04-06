@@ -23,7 +23,7 @@ RSpec.describe GamesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Game. As you add validations to Game, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {} }
+  let(:valid_attributes) { {starting_lives: 10} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -43,6 +43,14 @@ RSpec.describe GamesController, type: :controller do
       game = Game.create! valid_attributes
       get :show, {:id => game.to_param}, valid_session
       expect(assigns(:game)).to eq(game)
+    end
+  end
+
+  describe "GET #new" do
+    it "assigns a new game as @game" do
+      get :new, {}, valid_session
+
+      expect(assigns(:game)).to be_a_new(Game)
     end
   end
 

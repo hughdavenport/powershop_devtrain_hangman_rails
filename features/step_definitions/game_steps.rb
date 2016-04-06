@@ -44,6 +44,11 @@ Given(/^I have almost lost a game$/) do
 end
 
 
+When(/^I enter (.*) as (.*)$/) do |value, field|
+  field = field.gsub(/ /, '_')
+  fill_in "game[#{field}]", :with => value
+end
+
 When(/^I make a(n)? (in)?valid guess$/) do |plural_to_ignore, invalid|
   @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guessed_letters).sample
   fill_in "guess[guess]", :with => @guess
@@ -75,6 +80,10 @@ Then(/^I should have (no|\d+) (in)?correct guess(es)?$/) do |number, incorrect, 
     test = correct_guesses.count
   end
   expect(test).to be number.to_i
+end
+
+Then(/^I should have (\d+) lives left$/) do |lives|
+  expect(find(LIVES_REMAINING_SELECTOR).text.gsub(LIVES_REMAINING_REGEX, '\\k<lives>')).to eql lives
 end
 
 Then(/^I should have lost (no|\d+)? (more )?li(ves|fe)$/) do |number, more_to_ignore, plural_to_ignore|

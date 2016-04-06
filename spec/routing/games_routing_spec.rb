@@ -7,8 +7,8 @@ RSpec.describe GamesController, type: :routing do
       expect(:get => "/games").to route_to("games#index")
     end
 
-    it "routes to #create" do
-      expect(:post => "/games").to route_to("games#create")
+    it "routes to #new" do
+      expect(:get => "/games/new").to route_to("games#new")
     end
 
     it "routes to #show" do
