@@ -44,12 +44,12 @@ def finished_state
 end
 
 def make_correct_guess(game)
-  guess = (VALID_GUESSES - game.guesses_array).sample
+  guess = (VALID_GUESSES - game.guessed_letters).sample
   game.submit_guess(guess)
 end
 
 def make_incorrect_guess(game)
-  guess = (INVALID_GUESSES - game.guesses_array).sample
+  guess = (INVALID_GUESSES - game.guessed_letters).sample
   game.submit_guess(guess)
 end
 

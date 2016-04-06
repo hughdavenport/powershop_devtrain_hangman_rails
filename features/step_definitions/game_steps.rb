@@ -45,7 +45,7 @@ end
 
 
 When(/^I make a(n)? (in)?valid guess$/) do |plural_to_ignore, invalid|
-  @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guesses_array).sample
+  @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guessed_letters).sample
   fill_in "guess[guess]", :with => @guess
   click_on "Submit guess"
 end

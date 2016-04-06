@@ -12,7 +12,7 @@ class Game < ActiveRecord::Base
   end
 
   def word_guessed_so_far
-    word.chars.map { |character| character if guesses_array.include?(character) }
+    word.chars.map { |character| character if guessed_letters.include?(character) }
   end
 
   def won?
@@ -31,18 +31,16 @@ class Game < ActiveRecord::Base
     self.starting_lives - incorrect_guesses.length
   end
 
-  # TODO, should we be overriding this?
-  def guesses_array
-    # Call the active record relation, and just get out the guess character, and join into an array
-    guesses.all.map { |guess| guess.guess }
+  def guessed_letters
+    guesses.pluck(:guess)
   end
 
   def correct_guesses
-    guesses_array - incorrect_guesses
+    guessed_letters - incorrect_guesses
   end
 
   def incorrect_guesses
-    guesses_array - word.chars
+    guessed_letters - word.chars
   end
 
   def submit_guess(guess)
