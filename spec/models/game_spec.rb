@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Game, type: :model do
   context "when I create a new game" do
     context "with no arguments" do
-      subject(:game) { Game.new }
+      subject(:game) { Game.create!() }
       let(:default_starting_lives) { 10 }
       let(:default_word)           { "hangman" }
 
@@ -40,7 +40,7 @@ RSpec.describe Game, type: :model do
 
     context "with an argument for the starting word" do
       let(:argument) { "testing" }
-      subject(:game) { Game.new(word: argument) }
+      subject(:game) { Game.create!(word: argument) }
 
       describe "#word" do
         subject { game.word }
@@ -53,7 +53,7 @@ RSpec.describe Game, type: :model do
 
     context "with an argument for the starting score" do
       let(:argument) { 1 }
-      subject(:game) { Game.new(starting_lives: argument) }
+      subject(:game) { Game.create!(starting_lives: argument) }
 
       describe "#lives" do
         subject { game.lives }
@@ -66,7 +66,7 @@ RSpec.describe Game, type: :model do
   end
 
   context "when I have a new game with 1 life remaining" do
-    subject(:game) { Game.new(word: word, starting_lives: 1).tap { |g| g.save } }
+    subject(:game) { Game.create!(word: word, starting_lives: 1) }
     let(:word) { "hangman" }
 
     context "and I make an incorrect guess" do
@@ -105,7 +105,7 @@ RSpec.describe Game, type: :model do
   end
 
   context "when I have a game with the word almost guessed and three incorrect guesses" do
-    subject(:game) { Game.new(word: word).tap { |g| g.save } }
+    subject(:game) { Game.create!(word: word) }
     let(:word) { "hangman" }
     let(:guesses) { ["e", "g", "m", "s", "n", "h", "r"] }
     before { guesses.each { |guess| game.submit_guess(guess) } }
