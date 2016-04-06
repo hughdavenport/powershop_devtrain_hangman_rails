@@ -145,21 +145,6 @@ RSpec.describe Game, type: :model do
     end
   end
 
-  context "when I have a game that has made an incorrect guess" do
-    subject(:game) { Game.new(word: word).tap { |g| g.save } }
-    let(:word) { "hangman" }
-    let(:guess) { 'z' }
-    before { game.submit_guess(guess) }
-
-    describe "making the same guess" do
-      subject { game.submit_guess(guess) }
-
-      it "should not be allowed" do
-        expect(subject).not_to be_valid
-      end
-    end
-  end
-
   describe "making an invalid guess" do
     subject(:game) { Game.new.tap { |g| g.save } }
 
