@@ -4,13 +4,14 @@ class GuessesController < ApplicationController
   # POST /guesses
   # POST /guesses.json
   def create
-    @guess = @game.guesses.create(guess_params)
+    service = SubmitGuess.new(@game, guess_params[:guess])
 
     respond_to do |format|
-      if @guess.save
+      if service.call
         format.html { redirect_to @game, notice: 'Guess was successfully created.' }
         format.json { render :show, status: :created, location: @guess }
       else
+        @errors = service.errors
         format.html { render "games/show", object: @game }
         format.json { render json: @guess.errors, status: :unprocessable_entity }
       end

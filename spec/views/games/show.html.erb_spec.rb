@@ -146,4 +146,6 @@ RSpec.describe "games/show", type: :view do
       end
     end
   end
+
+  pending "TODO: Add tests for showing errors on invalid guess"
 end

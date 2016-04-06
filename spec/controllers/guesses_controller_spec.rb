@@ -46,10 +46,9 @@ RSpec.describe GuessesController, type: :controller do
         }.to change(Guess, :count).by(1)
       end
 
-      it "assigns a newly created guess as @guess" do
+      it "doesn't assign any errors to @errors" do
         post :create, {:game_id => game, :guess => valid_attributes}, valid_session
-        expect(assigns(:guess)).to be_a(Guess)
-        expect(assigns(:guess)).to be_persisted
+        expect(assigns(:errors)).to be nil
       end
 
       it "redirects to the game" do
@@ -59,9 +58,9 @@ RSpec.describe GuessesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved guess as @guess" do
+      it "assigns errors to @errors" do
         post :create, {:game_id => game, :guess => invalid_attributes}, valid_session
-        expect(assigns(:guess)).to be_a_new(Guess)
+        expect(assigns(:errors)).not_to be_empty
       end
 
       it "re-renders the 'games/show' template" do
