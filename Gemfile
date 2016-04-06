@@ -48,3 +48,4 @@ end
 gem "rspec-rails", :group => [:development, :test]
 gem "cucumber-rails", :group => [:test], :require => false
 gem "database_cleaner", :group => [:test]
+gem "spring-commands-rspec"
