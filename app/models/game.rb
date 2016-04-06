@@ -42,11 +42,4 @@ class Game < ActiveRecord::Base
   def incorrect_guesses
     guessed_letters - word.chars
   end
-
-  def submit_guess(guess)
-    self.guesses.create(guess: guess)
-  end
-  # Required for rails to allow this as a form entry
-  attr_accessor :guess
-  alias_method :guess=, :submit_guess
 end

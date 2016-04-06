@@ -45,12 +45,12 @@ end
 
 def make_correct_guess(game)
   guess = (VALID_GUESSES - game.guessed_letters).sample
-  game.submit_guess(guess)
+  SubmitGuess.new(game, guess).call
 end
 
 def make_incorrect_guess(game)
   guess = (INVALID_GUESSES - game.guessed_letters).sample
-  game.submit_guess(guess)
+  SubmitGuess.new(game, guess).call
 end
 
 RSpec.describe "games/show", type: :view do

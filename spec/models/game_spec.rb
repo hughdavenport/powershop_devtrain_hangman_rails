@@ -70,8 +70,8 @@ RSpec.describe Game, type: :model do
     let(:word) { "hangman" }
 
     context "and I make an incorrect guess" do
-      let(:guess) { 'z' }
-      before { game.submit_guess(guess) }
+      let(:letter) { 'z' }
+      before { SubmitGuess.new(game, letter).call }
 
       describe "the game" do
         it { is_expected.not_to be_won }
@@ -87,8 +87,8 @@ RSpec.describe Game, type: :model do
     end
 
     context "and I made a correct guess" do
-      let(:guess) { 'a' }
-      before { game.submit_guess(guess) }
+      let(:letter) { 'a' }
+      before { SubmitGuess.new(game, letter).call }
 
       describe "the game" do
         it { is_expected.not_to be_won }
@@ -107,12 +107,12 @@ RSpec.describe Game, type: :model do
   context "when I have a game with the word almost guessed and three incorrect guesses" do
     subject(:game) { Game.create!(word: word) }
     let(:word) { "hangman" }
-    let(:guesses) { ["e", "g", "m", "s", "n", "h", "r"] }
-    before { guesses.each { |guess| game.submit_guess(guess) } }
+    let(:letters) { ["e", "g", "m", "s", "n", "h", "r"] }
+    before { letters.each { |letter| expect(SubmitGuess.new(game, letter).call).to be true } }
 
     context "and I make an incorrect guess" do
-      let(:guess) { 'z' }
-      before { game.submit_guess(guess) }
+      let(:letter) { 'z' }
+      before { SubmitGuess.new(game, letter).call }
 
       describe "the game" do
         it { is_expected.not_to be_won }
@@ -128,8 +128,8 @@ RSpec.describe Game, type: :model do
     end
 
     context "and I made a correct guess" do
-      let(:guess) { 'a' }
-      before { game.submit_guess(guess) }
+      let(:letter) { 'a' }
+      before { SubmitGuess.new(game, letter).call }
 
       describe "the game" do
         it { is_expected.to be_won }
