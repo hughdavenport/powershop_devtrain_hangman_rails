@@ -40,4 +40,21 @@ RSpec.describe SubmitGuess, type: :service do
       expect(submit_guess.errors).not_to be_empty
     end
   end
+
+  context "when I have a game that has made a correct guess" do
+    before { SubmitGuess.new(game, letter).call }
+
+    let(:letter) { 'a' }
+
+    describe "making the same guess" do
+      it "returns false" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+  end
 end
