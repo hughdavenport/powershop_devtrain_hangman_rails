@@ -26,8 +26,7 @@ end
 
 
 Given(/^I have a new game$/) do
-  @game = Game.new(word: TESTING_WORD)
-  @game.save
+  @game = Game.create!(word: TESTING_WORD)
   @lives = @game.lives
   visit url_for(@game)
 end
