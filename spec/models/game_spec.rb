@@ -144,33 +144,4 @@ RSpec.describe Game, type: :model do
       end
     end
   end
-
-  context "when I have a finished (lost) game" do
-    subject(:game) { Game.new(starting_lives: 0).tap { |g| g.save } }
-
-    describe "making a guess" do
-      let(:guess) { 'a' }
-      subject { game.submit_guess(guess) }
-
-      it "should not be allowed" do
-        expect(subject).not_to be_valid
-      end
-    end
-  end
-
-  context "when I have a finished (won) game" do
-    subject(:game) { Game.new(word: word).tap { |g| g.save } }
-    let(:word) { "hangman" }
-    let(:guesses) { ["h", "a", "n", "g", "m"] }
-    before { guesses.each { |guess| game.submit_guess(guess) } }
-
-    describe "making a guess" do
-      let(:guess) { 'z' }
-      subject { game.submit_guess(guess) }
-
-      it "should not be allowed" do
-        expect(subject).not_to be_valid
-      end
-    end
-  end
 end

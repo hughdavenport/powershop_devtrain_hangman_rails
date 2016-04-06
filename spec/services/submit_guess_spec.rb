@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SubmitGuess, type: :service do
   let(:word) { "hangman" }
-  let(:game_params) { { word: word } }
+  let(:game_params) { { word: word }.merge(game_params_overridden) }
+  let(:game_params_overridden) { {} }
 
   let(:game) { Game.create!(game_params) }
 
@@ -160,6 +161,41 @@ RSpec.describe SubmitGuess, type: :service do
           submit_guess.call
           expect(submit_guess.errors).not_to be_empty
         end
+      end
+    end
+  end
+
+  context "when I have a finished (lost) game" do
+    let(:game_params_overridden) { { starting_lives: 0 } }
+
+    describe "submitting a guess" do
+      let(:letter) { 'a' }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
+      end
+    end
+  end
+
+  context "when I have a finished (won) game" do
+    let(:letters) { word.chars.uniq }
+    before { letters.each { |letter| SubmitGuess.new(game, letter).call } }
+
+    describe "submitting a guess" do
+      let(:letter) { 'z' }
+
+      it "fails" do
+        expect(submit_guess.call).to be false
+      end
+
+      it "has errors" do
+        submit_guess.call
+        expect(submit_guess.errors).not_to be_empty
       end
     end
   end
