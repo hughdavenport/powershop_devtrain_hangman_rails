@@ -14,9 +14,16 @@ RSpec.describe SubmitGuess, type: :service do
 
     it "succeeds" do
       expect(submit_guess.call).to be_truthy
-      # todo check actually saves
-      # expect .to_change
-      # .last
+    end
+
+    it "adds another guess" do
+      expect { submit_guess.call }.to change(Guess, :count).by(1)
+    end
+
+    it "adds the correct guess based on values" do
+      submit_guess.call
+      expect(Guess.last.guess).to eql letter
+      expect(Guess.last.game).to eql game
     end
 
     it "has no errors" do
@@ -33,6 +40,10 @@ RSpec.describe SubmitGuess, type: :service do
         expect(submit_guess.call).to be_falsey
       end
 
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
+      end
+
       it "has errors" do
         submit_guess.call
         expect(submit_guess.errors).not_to be_empty
@@ -44,6 +55,10 @@ RSpec.describe SubmitGuess, type: :service do
 
       it "fails" do
         expect(submit_guess.call).to be_falsey
+      end
+
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
       end
 
       it "has errors" do
@@ -59,6 +74,10 @@ RSpec.describe SubmitGuess, type: :service do
         expect(submit_guess.call).to be_falsey
       end
 
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
+      end
+
       it "has errors" do
         submit_guess.call
         expect(submit_guess.errors).not_to be_empty
@@ -70,6 +89,10 @@ RSpec.describe SubmitGuess, type: :service do
 
       it "fails" do
         expect(submit_guess.call).to be_falsey
+      end
+
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
       end
 
       it "has errors" do
@@ -85,6 +108,10 @@ RSpec.describe SubmitGuess, type: :service do
         expect(submit_guess.call).to be_falsey
       end
 
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
+      end
+
       it "has errors" do
         submit_guess.call
         expect(submit_guess.errors).not_to be_empty
@@ -96,6 +123,10 @@ RSpec.describe SubmitGuess, type: :service do
 
       it "fails" do
         expect(submit_guess.call).to be_falsey
+      end
+
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
       end
 
       it "has errors" do
@@ -111,6 +142,10 @@ RSpec.describe SubmitGuess, type: :service do
         expect(submit_guess.call).to be_falsey
       end
 
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
+      end
+
       it "has errors" do
         submit_guess.call
         expect(submit_guess.errors).not_to be_empty
@@ -122,6 +157,10 @@ RSpec.describe SubmitGuess, type: :service do
 
       it "fails" do
         expect(submit_guess.call).to be_falsey
+      end
+
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
       end
 
       it "has errors" do
@@ -142,6 +181,10 @@ RSpec.describe SubmitGuess, type: :service do
           expect(submit_guess.call).to be_falsey
         end
 
+        it "doesn't add another guess" do
+          expect { submit_guess.call }.not_to change(Guess, :count)
+        end
+
         it "has errors" do
           submit_guess.call
           expect(submit_guess.errors).not_to be_empty
@@ -155,6 +198,10 @@ RSpec.describe SubmitGuess, type: :service do
       describe "submitting the same guess" do
         it "fails" do
           expect(submit_guess.call).to be_falsey
+        end
+
+        it "doesn't add another guess" do
+          expect { submit_guess.call }.not_to change(Guess, :count)
         end
 
         it "has errors" do
@@ -175,6 +222,10 @@ RSpec.describe SubmitGuess, type: :service do
         expect(submit_guess.call).to be_falsey
       end
 
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
+      end
+
       it "has errors" do
         submit_guess.call
         expect(submit_guess.errors).not_to be_empty
@@ -191,6 +242,10 @@ RSpec.describe SubmitGuess, type: :service do
 
       it "fails" do
         expect(submit_guess.call).to be_falsey
+      end
+
+      it "doesn't add another guess" do
+        expect { submit_guess.call }.not_to change(Guess, :count)
       end
 
       it "has errors" do
