@@ -6,6 +6,8 @@ class Game < ActiveRecord::Base
 
   after_initialize :set_default_values
 
+  validates :starting_lives, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   def set_default_values
     self.starting_lives ||= DEFAULT_STARTING_LIVES
     self.word           ||= DEFAULT_STARTING_WORD

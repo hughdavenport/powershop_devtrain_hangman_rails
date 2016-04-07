@@ -20,15 +20,18 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    service = CreateGame.new(game_params[:starting_lives])
 
     respond_to do |format|
-      if @game.save
+      if service.call
+        @game = service.game
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :ok, location: @game }
       else
-        format.html { render :new } # not edit as no params, shouldn't happen
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        @game = service.game
+        @errors = service.errors
+        format.html { render :new } # not edit as first time only
+        format.json { render json: @errors, status: :unprocessable_entity }
       end
     end
   end
