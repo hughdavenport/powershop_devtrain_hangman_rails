@@ -1,6 +1,11 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :destroy]
 
+  # GET /games/new
+  def new
+    @game = Game.new
+  end
+
   # GET /games
   # GET /games.json
   def index
@@ -15,7 +20,7 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new # No params, just a fresh game
+    @game = Game.new(game_params)
 
     respond_to do |format|
       if @game.save
@@ -42,5 +47,10 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def game_params
+      params.require(:game).permit(:starting_lives)
     end
 end
