@@ -17,4 +17,5 @@ RSpec.describe "games/new", type: :view do
 
     assert_select "form input#game_starting_lives"
   end
+  pending "TODO add tests for showing errors on creating a game"
 end
