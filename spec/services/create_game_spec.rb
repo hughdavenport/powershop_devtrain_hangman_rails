@@ -9,9 +9,19 @@ RSpec.describe CreateGame, type: :service do
 
     it "succeeds" do
       expect(service.call).to be_truthy
-      # todo check actually saves
-      # expect .to_change
-      # .last
+    end
+
+    it "adds another game" do
+      expect { service.call }.to change(Game, :count).by(1)
+    end
+
+    it "has the correct starting lives in created game" do
+      service.call
+      expect(Game.last.starting_lives).to eql starting_lives
+    end
+
+    it "returns a game object" do
+      expect(service.call).to be_a(Game)
     end
 
     it "has no errors" do
@@ -28,6 +38,10 @@ RSpec.describe CreateGame, type: :service do
         expect(service.call).to be_falsey
       end
 
+      it "doesn't add another game" do
+        expect { service.call }.not_to change(Game, :count)
+      end
+
       it "has errors" do
         service.call
         expect(service.errors).not_to be_empty
@@ -41,6 +55,10 @@ RSpec.describe CreateGame, type: :service do
         expect(service.call).to be_falsey
       end
 
+      it "doesn't add another game" do
+        expect { service.call }.not_to change(Game, :count)
+      end
+
       it "has errors" do
         service.call
         expect(service.errors).not_to be_empty
@@ -52,6 +70,10 @@ RSpec.describe CreateGame, type: :service do
 
       it "fails" do
         expect(service.call).to be_falsey
+      end
+
+      it "doesn't add another game" do
+        expect { service.call }.not_to change(Game, :count)
       end
 
       it "has errors" do
