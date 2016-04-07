@@ -23,14 +23,12 @@ class GamesController < ApplicationController
     service = CreateGame.new(game_params[:starting_lives])
 
     respond_to do |format|
-      if service.call
-        @game = service.game
+      if @game = service.call
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :ok, location: @game }
       else
-        @game = service.game
         @errors = service.errors
-        format.html { render :new } # not edit as first time only
+        format.html { new; render :new } # not edit as first time only
         format.json { render json: @errors, status: :unprocessable_entity }
       end
     end

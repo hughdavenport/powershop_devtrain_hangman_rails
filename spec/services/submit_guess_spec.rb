@@ -13,7 +13,7 @@ RSpec.describe SubmitGuess, type: :service do
     let(:letter) { "a" }
 
     it "succeeds" do
-      expect(submit_guess.call).to be true
+      expect(submit_guess.call).to be_truthy
       # todo check actually saves
       # expect .to_change
       # .last
@@ -30,7 +30,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { 'A' }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -43,7 +43,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { '1' }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -56,7 +56,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { "~" }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -69,7 +69,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { "" }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -82,7 +82,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { "ab" }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -95,7 +95,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { [] }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -108,7 +108,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { ['a'] }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -121,7 +121,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { ['a', 'b'] }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -139,7 +139,7 @@ RSpec.describe SubmitGuess, type: :service do
 
       describe "submitting the same guess" do
         it "fails" do
-          expect(submit_guess.call).to be false
+          expect(submit_guess.call).to be_falsey
         end
 
         it "has errors" do
@@ -154,7 +154,7 @@ RSpec.describe SubmitGuess, type: :service do
 
       describe "submitting the same guess" do
         it "fails" do
-          expect(submit_guess.call).to be false
+          expect(submit_guess.call).to be_falsey
         end
 
         it "has errors" do
@@ -172,7 +172,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { 'a' }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do
@@ -190,7 +190,7 @@ RSpec.describe SubmitGuess, type: :service do
       let(:letter) { 'z' }
 
       it "fails" do
-        expect(submit_guess.call).to be false
+        expect(submit_guess.call).to be_falsey
       end
 
       it "has errors" do

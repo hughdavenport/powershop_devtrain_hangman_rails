@@ -8,7 +8,7 @@ RSpec.describe CreateGame, type: :service do
     let(:starting_lives) { 10 }
 
     it "succeeds" do
-      expect(create_game.call).to be true
+      expect(create_game.call).to be_truthy
       # todo check actually saves
       # expect .to_change
       # .last
@@ -25,7 +25,7 @@ RSpec.describe CreateGame, type: :service do
       let(:starting_lives) { -1 }
 
       it "fails" do
-        expect(create_game.call).to be false
+        expect(create_game.call).to be_falsey
       end
 
       it "has errors" do
@@ -38,7 +38,7 @@ RSpec.describe CreateGame, type: :service do
       let(:starting_lives) { 1.5 }
 
       it "fails" do
-        expect(create_game.call).to be false
+        expect(create_game.call).to be_falsey
       end
 
       it "has errors" do
@@ -51,7 +51,7 @@ RSpec.describe CreateGame, type: :service do
       let(:starting_lives) { "a" }
 
       it "fails" do
-        expect(create_game.call).to be false
+        expect(create_game.call).to be_falsey
       end
 
       it "has errors" do

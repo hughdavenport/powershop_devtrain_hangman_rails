@@ -5,11 +5,16 @@ class SubmitGuess
   end
 
   def call
-    @guess = @game.guesses.create(guess: @letter)
-    @guess.save
+    self.guess = game.guesses.create(guess: letter)
+    guess.save
   end
 
   def errors
-    @guess.errors
+    guess.errors
   end
+
+  private
+
+  attr_reader :game, :letter
+  attr_accessor :guess
 end
