@@ -1,5 +1,5 @@
 class CreateGame
-  attr_accessor :game
+  attr_reader :game
 
   def initialize(starting_lives)
     @starting_lives = starting_lives
@@ -13,4 +13,5 @@ class CreateGame
   private
 
   attr_reader :starting_lives
+  attr_writer :game
 end
