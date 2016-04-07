@@ -23,7 +23,9 @@ RSpec.describe GamesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Game. As you add validations to Game, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {starting_lives: 10} }
+  let(:valid_attributes) { { starting_lives: 10 } }
+
+  let(:invalid_attributes) { { starting_lives: -1 } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -70,6 +72,18 @@ RSpec.describe GamesController, type: :controller do
       it "redirects to the created game" do
         post :create, {:game => valid_attributes}, valid_session
         expect(response).to redirect_to(Game.last)
+      end
+    end
+
+    context "with invalid params" do
+      it "assigns errors to @errors" do
+        post :create, {:game => invalid_attributes}, valid_session
+        expect(assigns(:errors)).not_to be_empty
+      end
+
+      it "re-renders the 'games/new' template" do
+        post :create, {:game => invalid_attributes}, valid_session
+        expect(response).to render_template("games/new")
       end
     end
   end
