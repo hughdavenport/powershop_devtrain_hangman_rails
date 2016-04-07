@@ -55,7 +55,7 @@ RSpec.describe CreateWordList, type: :service do
       expect { service.call }.not_to change(WordList, :count)
     end
 
-    it "has a copy of the invalid game" do
+    it "has a copy of the invalid wordlist" do
       service.call
       expect(service.word_list).to be_a(WordList)
       expect(service.word_list).not_to be_persisted
@@ -85,7 +85,7 @@ RSpec.describe CreateWordList, type: :service do
         expect { service.call }.not_to change(Word, :count)
       end
 
-      it "has a copy of the invalid game" do
+      it "has a copy of the invalid wordlist" do
         service.call
         expect(service.word_list).to be_a(WordList)
         expect(service.word_list).not_to be_persisted
@@ -112,7 +112,7 @@ RSpec.describe CreateWordList, type: :service do
         expect { service.call }.not_to change(Word, :count)
       end
 
-      it "has a copy of the invalid game" do
+      it "has a copy of the invalid wordlist" do
         service.call
         expect(service.word_list).to be_a(WordList)
         expect(service.word_list).not_to be_persisted
@@ -139,7 +139,7 @@ RSpec.describe CreateWordList, type: :service do
         expect { service.call }.not_to change(Word, :count)
       end
 
-      it "has a copy of the invalid game" do
+      it "has a copy of the invalid wordlist" do
         service.call
         expect(service.word_list).to be_a(WordList)
         expect(service.word_list).not_to be_persisted
