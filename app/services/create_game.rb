@@ -10,6 +10,10 @@ class CreateGame
     game if game.save
   end
 
+  def errors
+    game.errors if game
+  end
+
   private
 
   attr_reader :starting_lives

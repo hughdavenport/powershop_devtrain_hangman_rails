@@ -12,6 +12,10 @@ class CreateWordList
     word_list if word_list.save
   end
 
+  def errors
+    word_list.errors if word_list
+  end
+
   private
 
   attr_reader :name, :words
