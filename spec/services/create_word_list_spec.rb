@@ -35,7 +35,7 @@ RSpec.describe CreateWordList, type: :service do
 
     it "has no errors" do
       service.call
-      expect(service.game.errors).to be_empty
+      expect(service.word_list.errors).to be_empty
     end
   end
 end
