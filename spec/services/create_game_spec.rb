@@ -26,7 +26,7 @@ RSpec.describe CreateGame, type: :service do
 
     it "has no errors" do
       service.call
-      expect(service.errors).to be_empty
+      expect(service.game.errors).to be_empty
     end
   end
 
@@ -42,9 +42,15 @@ RSpec.describe CreateGame, type: :service do
         expect { service.call }.not_to change(Game, :count)
       end
 
+      it "has a copy of the invalid game" do
+        service.call
+        expect(service.game).to be_a(Game)
+        expect(service.game).not_to be_persisted
+      end
+
       it "has errors" do
         service.call
-        expect(service.errors).not_to be_empty
+        expect(service.game.errors).not_to be_empty
       end
     end
 
@@ -59,9 +65,15 @@ RSpec.describe CreateGame, type: :service do
         expect { service.call }.not_to change(Game, :count)
       end
 
+      it "has a copy of the invalid game" do
+        service.call
+        expect(service.game).to be_a(Game)
+        expect(service.game).not_to be_persisted
+      end
+
       it "has errors" do
         service.call
-        expect(service.errors).not_to be_empty
+        expect(service.game.errors).not_to be_empty
       end
     end
 
@@ -76,9 +88,15 @@ RSpec.describe CreateGame, type: :service do
         expect { service.call }.not_to change(Game, :count)
       end
 
+      it "has a copy of the invalid game" do
+        service.call
+        expect(service.game).to be_a(Game)
+        expect(service.game).not_to be_persisted
+      end
+
       it "has errors" do
         service.call
-        expect(service.errors).not_to be_empty
+        expect(service.game.errors).not_to be_empty
       end
     end
   end

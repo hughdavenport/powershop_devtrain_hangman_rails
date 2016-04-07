@@ -27,8 +27,8 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :ok, location: @game }
       else
-        @errors = service.errors
-        format.html { new; render :new } # not edit as first time only
+        @game = service.game
+        format.html { render :new } # not edit as first time only
         format.json { render json: @errors, status: :unprocessable_entity }
       end
     end

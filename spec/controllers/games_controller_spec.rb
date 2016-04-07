@@ -64,9 +64,10 @@ RSpec.describe GamesController, type: :controller do
         }.to change(Game, :count).by(1)
       end
 
-      it "doesn't assign any errors to @errors" do
+      it "assigns a newly created game as @game" do
         post :create, {:game => valid_attributes}, valid_session
-        expect(assigns(:errors)).to be nil
+        expect(assigns(:game)).to be_a(Game)
+        expect(assigns(:game)).to be_persisted
       end
 
       it "redirects to the created game" do
@@ -76,9 +77,11 @@ RSpec.describe GamesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "assigns errors to @errors" do
+      it "assigns the non-saved game with errors as @game" do
         post :create, {:game => invalid_attributes}, valid_session
-        expect(assigns(:errors)).not_to be_empty
+        expect(assigns(:game)).to be_a(Game)
+        expect(assigns(:game)).not_to be_persisted
+        expect(assigns(:game).errors).not_to be_empty
       end
 
       it "re-renders the 'games/new' template" do
