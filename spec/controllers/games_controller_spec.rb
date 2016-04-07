@@ -62,10 +62,9 @@ RSpec.describe GamesController, type: :controller do
         }.to change(Game, :count).by(1)
       end
 
-      it "assigns a newly created game as @game" do
+      it "doesn't assign any errors to @errors" do
         post :create, {:game => valid_attributes}, valid_session
-        expect(assigns(:game)).to be_a(Game)
-        expect(assigns(:game)).to be_persisted
+        expect(assigns(:errors)).to be nil
       end
 
       it "redirects to the created game" do
