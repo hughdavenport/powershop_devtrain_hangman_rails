@@ -2,20 +2,19 @@ require 'rails_helper'
 
 RSpec.describe "games/new", type: :view do
   before(:each) do
-    assign(:game, Game.new())
+    assign(:game, Game.new(
+      :starting_lives => 5
+    ))
   end
 
   it "renders new game form" do
     render
 
     assert_select "form[action=?][method=?]", games_path, "post" do
+
+      assert_select "input#game_starting_lives[name=?]", "game[starting_lives]"
     end
   end
 
-  it "has a field for starting lives" do
-    render
-
-    assert_select "form input#game_starting_lives"
-  end
   pending "TODO add tests for showing errors on creating a game"
 end
