@@ -67,6 +67,32 @@ RSpec.describe CreateWordList, type: :service do
     end
   end
 
+  context "with a duplicate name" do
+    let(:name) { "testing" }
+    let(:words) { [] }
+
+    before { CreateWordList.new(name, []).call }
+
+    it "fails" do
+      expect(service.call).to be_falsey
+    end
+
+    it "doesn't add another wordlist" do
+      expect { service.call }.not_to change(WordList, :count)
+    end
+
+    it "has a copy of the invalid wordlist" do
+      service.call
+      expect(service.word_list).to be_a(WordList)
+      expect(service.word_list).not_to be_persisted
+    end
+
+    it "has errors" do
+      service.call
+      expect(service.errors).not_to be_empty
+    end
+  end
+
   context "with invalid words" do
     let(:name) { "testing" }
 
