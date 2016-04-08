@@ -2,6 +2,13 @@ Feature: Playing a game
   As a player
   I want to play a game of hangman
 
+  Background:
+    Given there is a wordlist called "default" with the following data
+      | word    |
+      | testing |
+      | another |
+      | hangman |
+
   Scenario: Starting a game
     Given I see the home page
     When I click "New Game"
