@@ -12,6 +12,14 @@ LIVES_REMAINING_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives remaining\z/
 LIVES_REMAINING_REGEX = Regexp.union(LIVES_REMAINING_SINGULAR_REGEX,
                                 LIVES_REMAINING_PLURAL_REGEX)
 
+Before do
+  CreateWordList.new("default", ["testing"]).call
+end
+
+After do
+  WordList.destroy_all
+end
+
 When(/^I see the home page$/) do
   visit root_path
 end

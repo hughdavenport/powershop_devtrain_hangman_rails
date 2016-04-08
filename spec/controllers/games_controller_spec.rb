@@ -19,6 +19,8 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe GamesController, type: :controller do
+  before(:all) { CreateWordList.new("default", ["testing"]).call }
+  after(:all) { WordList.destroy_all }
 
   # This should return the minimal set of attributes required to create a valid
   # Game. As you add validations to Game, be sure to

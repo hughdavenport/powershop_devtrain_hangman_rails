@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe CreateGame, type: :service do
+  before { CreateWordList.new(word_list, word_list_words).call }
+  after { WordList.destroy_all }
 
-  subject(:service) { CreateGame.new(starting_lives) }
+  let(:word_list) { "default" }
+  let(:word_list_words) { ["testing"] }
+
+  subject(:service) { CreateGame.new(starting_lives, word_list) }
 
   context "with a valid starting lives parameter" do
     let(:starting_lives) { 10 }
@@ -22,6 +27,11 @@ RSpec.describe CreateGame, type: :service do
 
     it "returns a game object" do
       expect(service.call).to be_a(Game)
+    end
+
+    it "has the game use a word from the wordlist supplied" do
+      service.call
+      expect(word_list_words).to include(Game.last.word)
     end
 
     it "has no errors" do
