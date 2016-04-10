@@ -23,7 +23,7 @@ Feature: Managing word lists
     Given I have a word list with no words
     When I click "Edit"
     And I enter in a word
-    And I click "Save"
+    And I click "Update Word list"
     Then I should see the word
     And I should see 1 word
 
@@ -31,7 +31,7 @@ Feature: Managing word lists
     Given I have a word list with some words
     When I click "Edit"
     And I enter in a word
-    And I click "Save"
+    And I click "Update Word list"
     Then I should see the word
     And I should see 1 more word
 
@@ -39,13 +39,14 @@ Feature: Managing word lists
     Given I have a word list with some words
     When I click "Edit"
     And I click "Delete" next to a word
-    And I click "Save"
+    And I click "Update Word list"
     Then I should not see the word
     And I should see 1 less word
 
   Scenario: Deleting a word list
-    Given I see all the word lists
+    Given I have a word list with some words
+    And I see all the word lists
     When I click "Destroy" next to a list
-    Then I should see all the word lists
+    Then I should see all the Word Lists
     And I should not see the list that I deleted
 
