@@ -24,27 +24,24 @@ Feature: Managing word lists
     When I click "Edit"
     And I enter in a word
     And I click "Save"
-    Then I should see the word list
+    Then I should see the word
     And I should see 1 word
-    And I should see the word
 
   Scenario: Editing a word list
     Given I have a word list with some words
     When I click "Edit"
     And I enter in a word
     And I click "Save"
-    Then I should see the word list
+    Then I should see the word
     And I should see 1 more word
-    And I should see the word
 
   Scenario: Deleting words from a word list
     Given I have a word list with some words
     When I click "Edit"
     And I click "Delete" next to a word
     And I click "Save"
-    Then I should see the word list
+    Then I should not see the word
     And I should see 1 less word
-    And I should not see the word
 
   Scenario: Deleting a word list
     Given I see all the word lists
