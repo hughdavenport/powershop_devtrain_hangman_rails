@@ -48,10 +48,6 @@ When(/^I make (\d+) (in)?valid guesses$/) do |number, invalid|
 end
 
 
-Then(/^I should see a new game$/) do
-	expect(page).to have_content(/Game was successfully created./)
-end
-
 Then(/^I should see my guess$/) do
   within(GUESSES_SELECTOR) { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}( [a-z])*$/) }
 end

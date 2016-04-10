@@ -9,3 +9,7 @@ end
 When(/^I enter (.*) as (.*)$/) do |value, field|
   fill_in field, :with => value
 end
+
+Then(/^I should see a new (.*)$/) do |thing|
+	expect(page).to have_content(/#{thing.capitalize} was successfully created./)
+end
