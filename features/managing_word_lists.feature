@@ -4,17 +4,17 @@ Feature: Managing word lists
 
   Scenario: Creating empty word list
     Given I see all the word lists
-    When I click "New Word List"
-    And I enter "empty" as name
-    And I click "Create Word List"
+    When I click "New Word list"
+    And I enter "empty" as Name
+    And I click "Create Word list"
     Then I should see a new word list
 
   Scenario: Creating a word lists with words
     Given I see all the word lists
-    When I click "New Word List"
-    And I enter "testing" as name
+    When I click "New Word list"
+    And I enter "testing" as Name
     And I enter in a word
-    And I click "Create Word List"
+    And I click "Create Word list"
     Then I should see a new word list
     And I should see 1 word
     And I should see the word

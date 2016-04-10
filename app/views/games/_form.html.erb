@@ -11,7 +11,10 @@
     </div>
   <% end %>
 
-  <%= f.text_field "starting_lives" %>
+  <div class="field">
+    <%= f.label :starting_lives, "Starting Lives" %>
+    <%= f.text_field :starting_lives %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

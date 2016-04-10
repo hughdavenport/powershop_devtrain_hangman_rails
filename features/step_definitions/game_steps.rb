@@ -12,20 +12,9 @@ LIVES_REMAINING_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives remaining\z/
 LIVES_REMAINING_REGEX = Regexp.union(LIVES_REMAINING_SINGULAR_REGEX,
                                 LIVES_REMAINING_PLURAL_REGEX)
 
+# Background
 Given(/^there is a wordlist called "(.*?)" with the following data$/) do |wordlist_name, words|
   CreateWordList.new(wordlist_name, words.rows.flatten).call unless WordList.exists?(name: wordlist_name)
-end
-
-When(/^I see the home page$/) do
-  visit root_path
-end
-
-When(/^I click "([^"]*)"$/) do |link|
-  click_on link
-end
-
-Then(/^I should see a new game$/) do
-	expect(page).to have_content(/Game was successfully created./)
 end
 
 
@@ -48,11 +37,6 @@ Given(/^I have almost lost a game$/) do
 end
 
 
-When(/^I enter (.*) as (.*)$/) do |value, field|
-  field = field.gsub(/ /, '_')
-  fill_in "game[#{field}]", :with => value
-end
-
 When(/^I make a(n)? (in)?valid guess$/) do |plural_to_ignore, invalid|
   @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guessed_letters).sample
   fill_in "guess[guess]", :with => @guess
@@ -63,6 +47,10 @@ When(/^I make (\d+) (in)?valid guesses$/) do |number, invalid|
   number.to_i.times { step "I make a #{invalid}valid guess" }
 end
 
+
+Then(/^I should see a new game$/) do
+	expect(page).to have_content(/Game was successfully created./)
+end
 
 Then(/^I should see my guess$/) do
   within(GUESSES_SELECTOR) { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}( [a-z])*$/) }

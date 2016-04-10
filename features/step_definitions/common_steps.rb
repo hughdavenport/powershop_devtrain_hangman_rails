@@ -1,0 +1,11 @@
+When(/^I see the home page$/) do
+  visit root_path
+end
+
+When(/^I click "([^"]*)"$/) do |link|
+  click_on link
+end
+
+When(/^I enter (.*) as (.*)$/) do |value, field|
+  fill_in field, :with => value
+end
