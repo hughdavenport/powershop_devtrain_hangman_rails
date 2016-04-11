@@ -9,44 +9,34 @@ Feature: Managing word lists
     And I click "Create Word list"
     Then I should see a new word list
 
-  Scenario: Creating a word lists with words
-    Given I see all the word lists
-    When I click "New Word list"
-    And I enter "testing" as Name
-    And I enter in a word
-    And I click "Create Word list"
-    Then I should see a new word list
-    And I should see 1 word
-    And I should see the word
-
-  Scenario: Editing an empty word list
+  Scenario: Editing a word list name
     Given I have a word list with no words
     When I click "Edit"
-    And I enter in a word
+    And I enter "another name" as Name
     And I click "Update Word list"
+    Then I should see "another name"
+
+  Scenario: Adding words to an empty word list
+    Given I have a word list with no words
+    When I add a word
     Then I should see the word
     And I should see 1 word
 
-  Scenario: Editing a word list
+  Scenario: Adding words to a word list
     Given I have a word list with some words
-    When I click "Edit"
-    And I enter in a word
-    And I click "Update Word list"
+    When I add a word
     Then I should see the word
     And I should see 1 more word
 
   Scenario: Deleting words from a word list
     Given I have a word list with some words
-    When I click "Edit"
-    And I click "Delete" next to a word
-    And I click "Update Word list"
-    Then I should not see the word
+    When I click "Destroy" next to a word
+    Then I should see a word destroyed
     And I should see 1 less word
 
   Scenario: Deleting a word list
     Given I have a word list with some words
     And I see all the word lists
     When I click "Destroy" next to a list
-    Then I should see all the Word Lists
-    And I should not see the list that I deleted
+    Then I should see a word list destroyed
 

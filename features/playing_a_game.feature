@@ -72,3 +72,9 @@ Feature: Playing a game
     When I make an invalid guess
     Then I should have lost the game
     And I should not have won the game
+
+  Scenario: Deleting a game
+    Given I have a new game
+    And I see all the games
+    When I click "Destroy" next to a game
+    Then I should see a game destroyed
