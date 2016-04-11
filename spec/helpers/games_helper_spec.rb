@@ -13,7 +13,7 @@ require 'rails_helper'
 RSpec.describe GamesHelper, type: :helper do
   let(:word) { "hangman" }
   let(:game) { Game.create(word: word) }
-  let(:guesses) { %w[h n m] }
+  let(:guesses) { %w[h n m w p k] }
   before { guesses.each { |guess| SubmitGuess.new(game, guess).call } }
 
   describe "#guessed_word" do
@@ -21,6 +21,12 @@ RSpec.describe GamesHelper, type: :helper do
     let(:regexp) { Regexp.new(wrong_letters.join('|')) }
     it "should have wrong letters displayed as ' _ '" do
       expect(helper.guessed_word(game)).to eq word.gsub(regexp, ' _ ')
+    end
+  end
+
+  describe "#guessed_letters" do
+    it "should have the guessed letters separated by spaces" do
+      expect(helper.guessed_letters(game)).to eq guesses.join(" ")
     end
   end
 end

@@ -8,7 +8,7 @@
 </div>
 <p id="livesremaining">You have <%= pluralize(@game.lives, "life") %> remaining </p>
 <p id="guessed_word">Currently guessed word is: <%= guessed_word(@game) %></p>
-<p id="guesses">You have guessed: <%= @game.guessed_letters.join(" ") %></p>
+<p id="guesses">You have guessed: <%= guessed_letters(@game) %></p>
 
 <% if Rails.env.development? %>
   <div id="debug">
