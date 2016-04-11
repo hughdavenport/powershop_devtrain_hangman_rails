@@ -25,14 +25,16 @@ en:
       guess:
         create: "Submit guess"
 
+  # On all views
+  back: "Back"
+
+  # Game show view
   # Losing a game
   GAME_OVER: "GAME OVER!"
   You_won:   "You won"
   You_lost:  "You lost"
 
   life: "life"
-
-  back: "Back"
 
   # Game details
   You_have_lives_remaining:  "You have %{lives} remaining"

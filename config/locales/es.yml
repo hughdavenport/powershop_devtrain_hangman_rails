@@ -10,14 +10,16 @@ es:
       guess:
         guess: Conjectura
 
+  # On all views
+  Back: "Espalda"
+
+  # Game show view
   # Losing a game
   GAME_OVER: "¡JUEGO TERMINADO!"
   You_won:   "Ganaste"
   You_lost:  "Perdiste"
 
   life: "vida"
-
-  Back: "Espalda"
 
   # Game details
   You_have_lives_remaining:  "Usted tiene %{lives} restante"

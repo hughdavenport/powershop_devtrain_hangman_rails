@@ -10,14 +10,16 @@ fr:
       guess:
         guess: Conjecture
 
+  # On all views
+  Back: "Arrière"
+
+  # Game show view
   # Losing a game
   GAME_OVER: "JEU TERMINÉ!"
   You_won:   "Vous avez gagné"
   You_lost:  "Vous avez perdu"
 
   life: "vie"
-
-  Back: "Arrière"
 
   # Game details
   You_have_lives_remaining:  "Vous avez %{lives} restant"
