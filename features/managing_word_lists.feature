@@ -4,16 +4,16 @@ Feature: Managing word lists
 
   Scenario: Creating empty word list
     Given I see all the word lists
-    When I click "New Word list"
+    When I click "New Word List"
     And I enter "empty" as Name
-    And I click "Create Word list"
+    And I click "Create Word List"
     Then I should see a new word list
 
   Scenario: Editing a word list name
     Given I have a word list with no words
     When I click "Edit"
     And I enter "another name" as Name
-    And I click "Update Word list"
+    And I click "Update Word List"
     Then I should see "another name"
 
   Scenario: Adding words to an empty word list

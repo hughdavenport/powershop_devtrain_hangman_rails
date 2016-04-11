@@ -18,7 +18,7 @@ Feature: Playing a game
   Scenario: Starting a game with different starting lives
     Given I see the home page
     When I click "New Game"
-    And I enter 5 as Starting Lives
+    And I enter 5 as Starting lives
     And I click "Create Game"
     Then I should see a new game
     And I should have 5 lives left
