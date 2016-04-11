@@ -38,3 +38,7 @@ en:
   You_have_lives_remaining:  "You have %{lives} remaining"
   Currently_guessed_word_is: "Currently guessed word is: %{guessed_word}"
   You_have_guessed:          "You have guessed: %{guessed_letters}"
+
+  # Debug mode
+  DEBUG_MODE: "DEBUG MODE"
+  The_word_is: "The word is: %{word}"

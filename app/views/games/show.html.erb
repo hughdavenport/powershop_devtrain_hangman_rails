@@ -12,8 +12,8 @@
 
 <% if Rails.env.development? %>
   <div id="debug">
-    DEBUG
-    <p id="word">The word is <%= @game.word %></p>
+    <%= t(:DEBUG_MODE) %>
+    <p id="word"><%= t(:The_word_is, word: @game.word) %></p>
   </div>
 <% end %>
 

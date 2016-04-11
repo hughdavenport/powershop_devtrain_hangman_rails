@@ -17,9 +17,13 @@ fr:
 
   life: "vie"
 
-  Back: "Retourner"
+  Back: "Arrière"
 
   # Game details
   You_have_lives_remaining:  "Vous avez %{lives} restant"
   Currently_guessed_word_is: "Actuellement mot deviné est: %{guessed_word}"
   You_have_guessed:          "Vous avez deviné: %{guessed_letters}"
+
+  # Debug mode
+  DEBUG_MODE: "MODE DÉBOGAGE"
+  The_word_is: "Le mot est: %{word}"

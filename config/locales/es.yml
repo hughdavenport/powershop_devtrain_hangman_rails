@@ -17,9 +17,13 @@ es:
 
   life: "vida"
 
-  Back: "Volver"
+  Back: "Espalda"
 
   # Game details
   You_have_lives_remaining:  "Usted tiene %{lives} restante"
   Currently_guessed_word_is: "Actualmente es la palabra adivinado: %{guessed_word}"
   You_have_guessed:          "Usted tiene adivinado: %{guessed_letters}"
+
+  # Debug mode
+  DEBUG_MODE: "MODO DE DEPURACIÓN"
+  The_word_is: "La palabra es: %{word}"
