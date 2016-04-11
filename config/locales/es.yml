@@ -25,6 +25,7 @@ es:
   # On all views
   Listing_things: "Listado de %{things}"
   New_thing: "Nuevo %{thing}"
+  Editing_thing: "Editar %{thing}"
   Back: "Espalda"
   Show: "Mostrar"
   Edit: "Editar"

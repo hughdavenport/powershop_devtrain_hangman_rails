@@ -36,6 +36,7 @@ en:
   # On all views
   Listing_things: "Listing %{things}"
   New_thing: "New %{thing}"
+  Editing_thing: "Editing %{thing}"
   Back: "Back"
   Show: "Show"
   Edit: "Edit"
