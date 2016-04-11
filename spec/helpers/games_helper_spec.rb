@@ -11,5 +11,16 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe GamesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:word) { "hangman" }
+  let(:game) { Game.create(word: word) }
+  let(:guesses) { %w[h n m] }
+  before { guesses.each { |guess| SubmitGuess.new(game, guess).call } }
+
+  describe "#guessed_word" do
+    let(:wrong_letters) { word.chars - guesses }
+    let(:regexp) { Regexp.new(wrong_letters.join('|')) }
+    it "should have wrong letters displayed as ' _ '" do
+      expect(helper.guessed_word(game)).to eq word.gsub(regexp, ' _ ')
+    end
+  end
 end

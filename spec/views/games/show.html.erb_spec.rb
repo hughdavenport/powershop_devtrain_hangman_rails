@@ -27,7 +27,7 @@ def lives_remaining
   find(LIVES_REMAINING_SELECTOR).match(LIVES_REMAINING_REGEX)[:lives].to_i
 end
 
-def guessed_word
+def guessed_word_array
   find(GUESSED_WORD_SELECTOR).match(GUESSED_WORD_REGEX)[1]
                              .gsub(/ /, '')
                              .chars.map { |character| character unless character == '_' }
@@ -70,7 +70,7 @@ RSpec.describe "games/show", type: :view do
     end
 
     it "should have an empty guessed word" do
-      expect(guessed_word.compact).to be_empty
+      expect(guessed_word_array.compact).to be_empty
     end
 
     it "should not have any guesses" do
