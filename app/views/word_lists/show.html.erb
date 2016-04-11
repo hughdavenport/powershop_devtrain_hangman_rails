@@ -3,7 +3,23 @@
 <p>
   <strong>Name:</strong>
   <%= @word_list.name %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Word</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @word_list.words.each do |word| %>
+        <%= render 'words/show', word: word %>
+      <% end %>
+    </tbody>
+  </table>
 </p>
 
+<%= link_to 'Add Word', new_word_list_word_path(@word_list) %> |
 <%= link_to 'Edit', edit_word_list_path(@word_list) %> |
 <%= link_to 'Back', word_lists_path %>

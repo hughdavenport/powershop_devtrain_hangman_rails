@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :word_lists
+  root 'games#index'
   resources :games, only: [:new, :index, :show, :create, :destroy] do
     resources :guesses, only: [:create]
   end
-  root 'games#index'
+  resources :word_lists, only: [:new, :edit, :index, :show, :create, :destroy] do
+    resources :words, only: [:new, :create, :destroy]
+  end
 end
