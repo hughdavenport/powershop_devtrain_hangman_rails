@@ -13,6 +13,7 @@ es:
       word_list:
         one: "Lista de palabra"
         other: "Listas de palabra"
+      word: "Palabra"
     attributes:
       game:
         wordlist_name: "Nombre de lista de palabras"
@@ -21,11 +22,14 @@ es:
         guess: "Conjectura"
       word_list:
         name: "Nombre"
+      word:
+        word: "Palabra"
 
   # On all views
   Listing_things: "Listado de %{things}"
   New_thing: "Nuevo %{thing}"
   Editing_thing: "Editar %{thing}"
+  Add_thing: "Añadir %{thing}"
   Back: "Espalda"
   Show: "Mostrar"
   Edit: "Editar"

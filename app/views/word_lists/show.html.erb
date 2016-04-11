@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= WordList.human_attribute_name(:name) %>:</strong>
   <%= @word_list.name %>
 
   <table>
     <thead>
       <tr>
-        <th>Word</th>
+        <th><%= Word.human_attribute_name(:word) %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -20,6 +20,6 @@
   </table>
 </p>
 
-<%= link_to 'Add Word', new_word_list_word_path(@word_list) %> |
-<%= link_to 'Edit', edit_word_list_path(@word_list) %> |
-<%= link_to 'Back', word_lists_path %>
+<%= link_to t(:Add_thing, thing: Word.model_name.human), new_word_list_word_path(@word_list) %> |
+<%= link_to t(:Edit), edit_word_list_path(@word_list) %> |
+<%= link_to t(:Back), word_lists_path %>
