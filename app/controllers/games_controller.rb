@@ -4,6 +4,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @wordlists = WordList.all.pluck(:name)
   end
 
   # GET /games

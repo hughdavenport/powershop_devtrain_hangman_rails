@@ -5,6 +5,7 @@ RSpec.describe "games/new", type: :view do
     assign(:game, Game.new(
       :starting_lives => 5
     ))
+    assign(:wordlists, WordList.all.pluck(:name))
   end
 
   it "renders new game form" do
