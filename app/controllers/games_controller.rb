@@ -20,7 +20,7 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    service = CreateGame.new(game_params[:starting_lives])
+    service = CreateGame.new(game_params)
 
     respond_to do |format|
       if @game = service.call
@@ -52,6 +52,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:starting_lives, :wordlist_name)
+      params.require(:game).permit(:starting_lives, :wordlist_name).map { |k, v| [k.to_sym, v] }.to_h
     end
 end

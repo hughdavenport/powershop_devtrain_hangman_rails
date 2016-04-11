@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Game, type: :model do
   context "when I create a new game" do
-    context "with no arguments" do
-      subject(:game) { Game.create!() }
+    context "with an argument for the starting word" do
+      let(:argument) { "testing" }
       let(:default_starting_lives) { 10 }
-      let(:default_word)           { "hangman" }
+      subject(:game) { Game.create!(word: argument) }
 
       describe "the game" do
         it { is_expected.not_to be_won }
@@ -24,8 +24,8 @@ RSpec.describe Game, type: :model do
       describe "#word" do
         subject { game.word }
 
-        it "should be the default" do
-          is_expected.to eql default_word
+        it "should be the same as the argument" do
+          is_expected.to eql argument
         end
       end
 
@@ -36,30 +36,39 @@ RSpec.describe Game, type: :model do
           expect(subject.compact).to be_empty
         end
       end
-    end
 
-    context "with an argument for the starting word" do
-      let(:argument) { "testing" }
-      subject(:game) { Game.create!(word: argument) }
+      context "and an argument for the starting score" do
+        let(:argument2) { 1 }
+        subject(:game) { Game.create!(word: argument, starting_lives: argument2) }
 
-      describe "#word" do
-        subject { game.word }
-
-        it "should be the same as the argument" do
-          is_expected.to eql argument
+        describe "the game" do
+          it { is_expected.not_to be_won }
+          it { is_expected.not_to be_lost }
+          it { is_expected.not_to be_finished }
         end
-      end
-    end
 
-    context "with an argument for the starting score" do
-      let(:argument) { 1 }
-      subject(:game) { Game.create!(starting_lives: argument) }
+        describe "#lives" do
+          subject { game.lives }
 
-      describe "#lives" do
-        subject { game.lives }
+          it "should be the same as the argument" do
+            is_expected.to eql argument2
+          end
+        end
 
-        it "should be the same as the argument" do
-          is_expected.to eql argument
+        describe "#word" do
+          subject { game.word }
+
+          it "should be the same as the argument" do
+            is_expected.to eql argument
+          end
+        end
+
+        describe "#word_guessed_so_far" do
+          subject { game.word_guessed_so_far}
+
+          it "should be empty" do
+            expect(subject.compact).to be_empty
+          end
         end
       end
     end

@@ -1,16 +1,19 @@
 class Game < ActiveRecord::Base
   DEFAULT_STARTING_LIVES = 10
-  DEFAULT_STARTING_WORD  = "hangman"
+  DEFAULT_WORDLIST_NAME = "default"
 
   has_many :guesses, dependent: :destroy
 
   after_initialize :set_default_values
 
   validates :starting_lives, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :word, presence: true
+
+  attr_reader :wordlist_name
 
   def set_default_values
     self.starting_lives ||= DEFAULT_STARTING_LIVES
-    self.word           ||= DEFAULT_STARTING_WORD
+    self.wordlist_name ||= DEFAULT_WORDLIST_NAME
   end
 
   def word_guessed_so_far
@@ -44,4 +47,8 @@ class Game < ActiveRecord::Base
   def incorrect_guesses
     guessed_letters - word.chars
   end
+
+  private
+
+  attr_writer :wordlist_name
 end

@@ -7,7 +7,7 @@ RSpec.describe CreateGame, type: :service do
   let(:word_list) { "default" }
   let(:word_list_words) { ["testing"] }
 
-  subject(:service) { CreateGame.new(starting_lives, word_list) }
+  subject(:service) { CreateGame.new(starting_lives: starting_lives, wordlist_name: word_list) }
 
   context "with a valid starting lives parameter" do
     let(:starting_lives) { 10 }

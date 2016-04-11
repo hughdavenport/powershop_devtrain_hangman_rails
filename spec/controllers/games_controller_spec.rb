@@ -22,12 +22,15 @@ RSpec.describe GamesController, type: :controller do
   before(:all) { CreateWordList.new("default", ["testing"]).call }
   after(:all) { WordList.destroy_all }
 
+  let(:wordlist_name) { "default" }
+  let(:word) { "hangman" }
+
   # This should return the minimal set of attributes required to create a valid
   # Game. As you add validations to Game, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { starting_lives: 10 } }
+  let(:valid_attributes) { { starting_lives: 10, wordlist_name: wordlist_name } }
 
-  let(:invalid_attributes) { { starting_lives: -1 } }
+  let(:invalid_attributes) { { starting_lives: -1, wordlist_name: "" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -36,7 +39,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "GET #index" do
     it "assigns all games as @games" do
-      game = Game.create! valid_attributes
+      game = Game.create!(word: word)
       get :index, {}, valid_session
       expect(assigns(:games)).to eq([game])
     end
@@ -44,7 +47,7 @@ RSpec.describe GamesController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested game as @game" do
-      game = Game.create! valid_attributes
+      game = Game.create!(word: word)
       get :show, {:id => game.to_param}, valid_session
       expect(assigns(:game)).to eq(game)
     end
@@ -95,14 +98,14 @@ RSpec.describe GamesController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested game" do
-      game = Game.create! valid_attributes
+      game = Game.create!(word: word)
       expect {
         delete :destroy, {:id => game.to_param}, valid_session
       }.to change(Game, :count).by(-1)
     end
 
     it "redirects to the games list" do
-      game = Game.create! valid_attributes
+      game = Game.create!(word: word)
       delete :destroy, {:id => game.to_param}, valid_session
       expect(response).to redirect_to(games_url)
     end
