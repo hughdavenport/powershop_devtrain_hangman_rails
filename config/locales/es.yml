@@ -6,11 +6,17 @@ es:
         create: "Enviar conjectura"
 
   activerecord:
+    models:
+      game: "Juego"
     attributes:
+      game:
+        wordlist_name: "Nombre de lista de palabras"
+        starting_lives: "A partir vidas"
       guess:
-        guess: Conjectura
+        guess: "Conjectura"
 
   # On all views
+  New_thing: "Nuevo %{thing}"
   Back: "Espalda"
 
   # Game show view

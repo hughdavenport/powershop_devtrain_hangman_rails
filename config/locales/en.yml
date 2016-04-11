@@ -26,6 +26,7 @@ en:
         create: "Submit guess"
 
   # On all views
+  New_thing: "New %{thing}"
   back: "Back"
 
   # Game show view

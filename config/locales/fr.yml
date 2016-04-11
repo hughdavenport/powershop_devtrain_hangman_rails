@@ -6,11 +6,17 @@ fr:
         create: "Soumettre conjecture"
 
   activerecord:
+    models:
+      game: "Jeu"
     attributes:
+      game:
+        wordlist_name: "Nom de liste de mots"
+        starting_lives: "À partir des vies"
       guess:
-        guess: Conjecture
+        guess: "Conjecture"
 
   # On all views
+  New_thing: "Nouvelle %{thing}"
   Back: "Arrière"
 
   # Game show view
