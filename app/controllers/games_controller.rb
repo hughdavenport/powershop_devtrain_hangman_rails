@@ -7,41 +7,30 @@ class GamesController < ApplicationController
   end
 
   # GET /games
-  # GET /games.json
   def index
     @games = Game.all
   end
 
   # GET /games/1
-  # GET /games/1.json
   def show
   end
 
   # POST /games
-  # POST /games.json
   def create
     service = CreateGame.new(game_params)
 
-    respond_to do |format|
-      if @game = service.call
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :ok, location: @game }
-      else
-        @game = service.game
-        format.html { render :new } # not edit as first time only
-        format.json { render json: @errors, status: :unprocessable_entity }
-      end
+    if @game = service.call
+      redirect_to @game, notice: 'Game was successfully created.'
+    else
+      @game = service.game
+      render :new # not edit as first time only
     end
   end
 
   # DELETE /games/1
-  # DELETE /games/1.json
   def destroy
     @game.destroy
-    respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to games_url, notice: 'Game was successfully destroyed.'
   end
 
   private
