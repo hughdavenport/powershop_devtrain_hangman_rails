@@ -10,6 +10,13 @@
 <p id="guessed_word">Currently guessed word is: <%= @game.word_guessed_so_far.map { |char| char ? char : " _ " }.join %></p>
 <p id="guesses">You have guessed: <%= @game.guessed_letters.join(" ") %></p>
 
+<% if Rails.env.development? %>
+  <div id="debug">
+    DEBUG
+    <p id="word">The word is <%= @game.word %></p>
+  </div>
+<% end %>
+
 <%= render 'guesses/form' %>
 
 <%= link_to 'Back', games_path %>
