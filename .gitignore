@@ -18,3 +18,6 @@
 
 # Ignore vim swap files
 .*.swp
+
+# Ignore coverage
+coverage
