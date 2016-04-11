@@ -6,7 +6,7 @@
     <div id="winstate"><%= @game.won?? t(:you_won) : t(:you_lost) %></div>
   <% end %>
 </div>
-<p id="livesremaining"><%= t(:you_have_lives_remaining, lives: pluralize(@game.lives, "life")) %></p>
+<p id="livesremaining"><%= t(:you_have_lives_remaining, lives: pluralize(@game.lives, t(:life))) %></p>
 <p id="guessed_word"><%= t(:currently_guessed_word_is, guessed_word: guessed_word(@game)) %></p>
 <p id="guesses"><%= t(:you_have_guessed, guessed_letters: guessed_letters(@game)) %></p>
 

@@ -25,6 +25,8 @@ en:
   you_won:   "You won"
   you_lost:  "You lost"
 
+  life: "life"
+
   # Game details
   you_have_lives_remaining:  "You have %{lives} remaining"
   currently_guessed_word_is: "Currently guessed word is: %{guessed_word}"
