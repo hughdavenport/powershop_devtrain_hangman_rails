@@ -2,13 +2,13 @@
 
 <div id="finishedstate">
   <% if @game.finished? %>
-    <div id="gameover"><%= t(:game_over) %></div>
-    <div id="winstate"><%= @game.won?? t(:you_won) : t(:you_lost) %></div>
+    <div id="gameover"><%= t(:GAME_OVER) %></div>
+    <div id="winstate"><%= @game.won?? t(:You_won) : t(:You_lost) %></div>
   <% end %>
 </div>
-<p id="livesremaining"><%= t(:you_have_lives_remaining, lives: pluralize(@game.lives, t(:life))) %></p>
-<p id="guessed_word"><%= t(:currently_guessed_word_is, guessed_word: guessed_word(@game)) %></p>
-<p id="guesses"><%= t(:you_have_guessed, guessed_letters: guessed_letters(@game)) %></p>
+<p id="livesremaining"><%= t(:You_have_lives_remaining, lives: pluralize(@game.lives, t(:life))) %></p>
+<p id="guessed_word"><%= t(:Currently_guessed_word_is, guessed_word: guessed_word(@game)) %></p>
+<p id="guesses"><%= t(:You_have_guessed, guessed_letters: guessed_letters(@game)) %></p>
 
 <% if Rails.env.development? %>
   <div id="debug">
@@ -19,4 +19,4 @@
 
 <%= render 'guesses/form' %>
 
-<%= link_to 'Back', games_path %>
+<%= link_to t(:Back), games_path %>

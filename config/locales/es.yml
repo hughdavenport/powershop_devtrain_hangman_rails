@@ -11,13 +11,15 @@ es:
         guess: Conjectura
 
   # Losing a game
-  game_over: "¡JUEGO TERMINADO!"
-  you_won:   "Ganaste"
-  you_lost:  "Perdiste"
+  GAME_OVER: "¡JUEGO TERMINADO!"
+  You_won:   "Ganaste"
+  You_lost:  "Perdiste"
 
   life: "vida"
 
+  Back: "Volver"
+
   # Game details
-  you_have_lives_remaining:  "Usted tiene %{lives} restante"
-  currently_guessed_word_is: "Actualmente es la palabra adivinado: %{guessed_word}"
-  you_have_guessed:          "Usted tiene adivinado: %{guessed_letters}"
+  You_have_lives_remaining:  "Usted tiene %{lives} restante"
+  Currently_guessed_word_is: "Actualmente es la palabra adivinado: %{guessed_word}"
+  You_have_guessed:          "Usted tiene adivinado: %{guessed_letters}"

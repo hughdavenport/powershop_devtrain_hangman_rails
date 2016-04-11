@@ -26,13 +26,15 @@ en:
         create: "Submit guess"
 
   # Losing a game
-  game_over: "GAME OVER!"
-  you_won:   "You won"
-  you_lost:  "You lost"
+  GAME_OVER: "GAME OVER!"
+  You_won:   "You won"
+  You_lost:  "You lost"
 
   life: "life"
 
+  back: "Back"
+
   # Game details
-  you_have_lives_remaining:  "You have %{lives} remaining"
-  currently_guessed_word_is: "Currently guessed word is: %{guessed_word}"
-  you_have_guessed:          "You have guessed: %{guessed_letters}"
+  You_have_lives_remaining:  "You have %{lives} remaining"
+  Currently_guessed_word_is: "Currently guessed word is: %{guessed_word}"
+  You_have_guessed:          "You have guessed: %{guessed_letters}"
