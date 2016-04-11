@@ -2,13 +2,13 @@
 
 <div id="finishedstate">
   <% if @game.finished? %>
-    <div id="gameover">GAME OVER!</div>
-    <div id="winstate"><%= @game.won?? "You won" : "You lost" %></div>
+    <div id="gameover"><%= t(:game_over) %></div>
+    <div id="winstate"><%= @game.won?? t(:you_won) : t(:you_lost) %></div>
   <% end %>
 </div>
-<p id="livesremaining">You have <%= pluralize(@game.lives, "life") %> remaining </p>
-<p id="guessed_word">Currently guessed word is: <%= guessed_word(@game) %></p>
-<p id="guesses">You have guessed: <%= guessed_letters(@game) %></p>
+<p id="livesremaining"><%= t(:you_have_lives_remaining, lives: pluralize(@game.lives, "life")) %></p>
+<p id="guessed_word"><%= t(:currently_guessed_word_is, guessed_word: guessed_word(@game)) %></p>
+<p id="guesses"><%= t(:you_have_guessed, guessed_letters: guessed_letters(@game)) %></p>
 
 <% if Rails.env.development? %>
   <div id="debug">
