@@ -30,7 +30,7 @@ Feature: Managing word lists
 
   Scenario: Deleting words from a word list
     Given I have a word list with some words
-    When I click "Destroy" next to a word
+    When I delete a word
     Then I should see a word destroyed
     And I should see 1 less word
 

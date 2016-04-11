@@ -24,6 +24,10 @@ Given(/^I have a new game$/) do
   visit url_for(@game)
 end
 
+Given(/^I see all the games$/) do
+  step "I see the home page"
+end
+
 Given(/^I have almost won a game$/) do
   step "I have a new game"
   step "I make #{VALID_GUESSES.count - 1} valid guesses"
