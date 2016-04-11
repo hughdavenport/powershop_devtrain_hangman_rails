@@ -23,14 +23,6 @@ RSpec.describe WordListsController, type: :routing do
       expect(:post => "/word_lists").to route_to("word_lists#create")
     end
 
-    it "routes to #update via PUT" do
-      expect(:put => "/word_lists/1").to route_to("word_lists#update", :id => "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(:patch => "/word_lists/1").to route_to("word_lists#update", :id => "1")
-    end
-
     it "routes to #destroy" do
       expect(:delete => "/word_lists/1").to route_to("word_lists#destroy", :id => "1")
     end
