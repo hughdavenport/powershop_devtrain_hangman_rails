@@ -93,6 +93,22 @@ RSpec.describe Game, type: :model do
 
         it { is_expected.to be 0 }
       end
+
+      describe "#incorrect_guesses" do
+        subject { game.incorrect_guesses }
+
+        it "should contain the guess" do
+          expect(subject).to include(letter)
+        end
+      end
+
+      describe "#correct_guesses" do
+        subject { game.correct_guesses }
+
+        it "should not contain the guess" do
+          expect(subject).not_to include(letter)
+        end
+      end
     end
 
     context "and I made a correct guess" do
@@ -109,6 +125,22 @@ RSpec.describe Game, type: :model do
         subject { game.lives }
 
         it { is_expected.to be 1 }
+      end
+
+      describe "#incorrect_guesses" do
+        subject { game.incorrect_guesses }
+
+        it "should not contain the guess" do
+          expect(subject).not_to include(letter)
+        end
+      end
+
+      describe "#correct_guesses" do
+        subject { game.correct_guesses }
+
+        it "should contain the guess" do
+          expect(subject).to include(letter)
+        end
       end
     end
   end
@@ -134,6 +166,22 @@ RSpec.describe Game, type: :model do
 
         it { is_expected.to be 6 }
       end
+
+      describe "#incorrect_guesses" do
+        subject { game.incorrect_guesses }
+
+        it "should contain the guess" do
+          expect(subject).to include(letter)
+        end
+      end
+
+      describe "#correct_guesses" do
+        subject { game.correct_guesses }
+
+        it "should not contain the guess" do
+          expect(subject).not_to include(letter)
+        end
+      end
     end
 
     context "and I made a correct guess" do
@@ -150,6 +198,22 @@ RSpec.describe Game, type: :model do
         subject { game.lives }
 
         it { is_expected.to be 7 }
+      end
+
+      describe "#incorrect_guesses" do
+        subject { game.incorrect_guesses }
+
+        it "should not contain the guess" do
+          expect(subject).not_to include(letter)
+        end
+      end
+
+      describe "#correct_guesses" do
+        subject { game.correct_guesses }
+
+        it "should contain the guess" do
+          expect(subject).to include(letter)
+        end
       end
     end
   end
