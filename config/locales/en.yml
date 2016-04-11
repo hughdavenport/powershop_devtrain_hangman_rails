@@ -38,6 +38,7 @@ en:
   New_thing: "New %{thing}"
   Back: "Back"
   Show: "Show"
+  Edit: "Edit"
   Destroy: "Destroy"
 
   # Game show view

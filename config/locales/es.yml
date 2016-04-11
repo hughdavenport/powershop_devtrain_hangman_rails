@@ -19,12 +19,15 @@ es:
         starting_lives: "A partir vidas"
       guess:
         guess: "Conjectura"
+      word_list:
+        name: "Nombre"
 
   # On all views
-  Listing_things: "Listido de %{things}"
+  Listing_things: "Listado de %{things}"
   New_thing: "Nuevo %{thing}"
   Back: "Espalda"
-  Show: "Monstrar"
+  Show: "Mostrar"
+  Edit: "Editar"
   Destroy: "Destruir"
 
   # Game show view
