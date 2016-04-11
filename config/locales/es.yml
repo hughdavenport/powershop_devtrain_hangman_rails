@@ -1,4 +1,15 @@
 es:
+  helpers:
+    submit:
+      create: "Crear %{model}"
+      guess:
+        create: "Enviar conjectura"
+
+  activerecord:
+    attributes:
+      guess:
+        guess: Conjectura
+
   # Losing a game
   game_over: "¡JUEGO TERMINADO!"
   you_won:   "Ganaste"
