@@ -23,10 +23,6 @@ Then(/^I should see a (.*) destroyed$/) do |thing|
   expect(page).to have_content(/#{thing.capitalize} was successfully destroyed./)
 end
 
-Then(/^I should see all the (.*)$/) do |things|
-  within('h1') { expect(page).to have_content(/^Listing #{things}$/) }
-end
-
 Then(/^I should see "([^"]*)"$/) do |value|
   expect(page).to have_content(/#{value}/)
 end
