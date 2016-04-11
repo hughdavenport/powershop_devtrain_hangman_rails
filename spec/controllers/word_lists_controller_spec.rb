@@ -97,6 +97,46 @@ RSpec.describe WordListsController, type: :controller do
     end
   end
 
+  describe "PUT #update" do
+    context "with valid params" do
+      let(:new_name) { "new name" }
+      let(:new_attributes) { { name: new_name } }
+
+      it "updates the requested word list" do
+        word_list = WordList.create! valid_attributes
+        put :update, {:id => word_list.to_param, :word_list => new_attributes}, valid_session
+        word_list.reload
+        expect(word_list.name).to eql new_name
+      end
+
+      it "assigns the requested word list as @word_list" do
+        word_list = WordList.create! valid_attributes
+        put :update, {:id => word_list.to_param, :word_list => valid_attributes}, valid_session
+        expect(assigns(:word_list)).to eq(word_list)
+      end
+
+      it "redirects to the word list" do
+        word_list = WordList.create! valid_attributes
+        put :update, {:id => word_list.to_param, :word_list => valid_attributes}, valid_session
+        expect(response).to redirect_to(word_list)
+      end
+    end
+
+    context "with invalid params" do
+      it "assigns the word list as @word_list" do
+        word_list = WordList.create! valid_attributes
+        put :update, {:id => word_list.to_param, :word_list => invalid_attributes}, valid_session
+        expect(assigns(:word_list)).to eq(word_list)
+      end
+
+      it "re-renders the 'edit' template" do
+        word_list = WordList.create! valid_attributes
+        put :update, {:id => word_list.to_param, :word_list => invalid_attributes}, valid_session
+        expect(response).to render_template("edit")
+      end
+    end
+  end
+
   describe "DELETE #destroy" do
     it "destroys the requested word_list" do
       word_list = WordList.create! valid_attributes
