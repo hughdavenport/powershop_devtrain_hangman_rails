@@ -7,7 +7,12 @@ fr:
 
   activerecord:
     models:
-      game: "Jeu"
+      game:
+        one: "Jeu"
+        other: "Jeux"
+      word_list:
+        one: "Liste de mots"
+        other: "Listes de mots"
     attributes:
       game:
         wordlist_name: "Nom de liste de mots"
@@ -16,8 +21,11 @@ fr:
         guess: "Conjecture"
 
   # On all views
+  Listing_things: "Liste des %{things}"
   New_thing: "Nouvelle %{thing}"
   Back: "Arrière"
+  Show: "Montrer"
+  Destroy: "Détruire"
 
   # Game show view
   # Losing a game

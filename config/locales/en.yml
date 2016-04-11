@@ -24,10 +24,21 @@ en:
     submit:
       guess:
         create: "Submit guess"
+  activerecord:
+    models:
+      game:
+        one: "Game"
+        other: "Games"
+      word_list:
+        one: "Word List"
+        other: "Word Lists"
 
   # On all views
+  Listing_things: "Listing %{things}"
   New_thing: "New %{thing}"
-  back: "Back"
+  Back: "Back"
+  Show: "Show"
+  Destroy: "Destroy"
 
   # Game show view
   # Losing a game
