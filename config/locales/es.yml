@@ -1,0 +1,12 @@
+es:
+  # Losing a game
+  game_over: "¡JUEGO TERMINADO!"
+  you_won:   "Ganaste"
+  you_lost:  "Perdiste"
+
+  life: "vida"
+
+  # Game details
+  you_have_lives_remaining:  "Usted tiene %{lives} restante"
+  currently_guessed_word_is: "Actualmente es la palabra adivinado: %{guessed_word}"
+  you_have_guessed:          "Usted tiene adivinado: %{guessed_letters}"
