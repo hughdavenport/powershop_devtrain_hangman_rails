@@ -17,7 +17,12 @@ class CreateGame
   end
 
   def errors
-    game.errors if game
+    game.errors.tap do |errors|
+      if errors.messages.include?(:word)
+        errors.messages[:wordlist_name] = [errors.generate_message(:wordlist_name)]
+        errors.messages.delete(:word)
+      end
+    end if game
   end
 
   private

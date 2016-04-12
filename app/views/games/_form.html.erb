@@ -1,10 +1,10 @@
 <%= form_for(@game) do |f| %>
-  <% if @game.errors.any? %>
+  <% if @errors and @errors.any? %>
     <div id="error_explanation">
-      <h2><%= t(:errors_prohibited_this_thing_from_being_saved, errors: t(:error, count: @game.errors.count), thing: Game.model_name.human.downcase) %>:</h2>
+      <h2><%= t(:errors_prohibited_this_thing_from_being_saved, errors: t(:error, count: @errors.count), thing: Game.model_name.human.downcase) %>:</h2>
 
       <ul>
-      <% @game.errors.full_messages.each do |message| %>
+      <% @errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

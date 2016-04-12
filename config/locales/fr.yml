@@ -31,6 +31,10 @@ fr:
     one: "1 erreur"
     other: "%{count} erreurs"
   errors_prohibited_this_thing_from_being_saved: "%{errors} interdit cette %{thing} d'être sauvé" # cette is feminine
+  errors:
+    messages:
+      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+      invalid: "est invalide"
 
   # On all views
   Listing_things: "Liste des %{things}"

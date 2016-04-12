@@ -23,6 +23,7 @@ class GamesController < ApplicationController
       redirect_to @game, notice: 'Game was successfully created.'
     else
       @game = service.game
+      @errors = service.errors
       render :new # not edit as first time only
     end
   end
