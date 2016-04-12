@@ -52,7 +52,9 @@ fr:
   You_won:   "Vous avez gagné"
   You_lost:  "Vous avez perdu"
 
-  life: "vie"
+  life:
+    one: "1 vie"
+    other: "%{count} vies"
 
   # Game details
   You_have_lives_remaining:  "Vous avez %{lives} restant"

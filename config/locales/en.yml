@@ -57,7 +57,9 @@ en:
   You_won:   "You won"
   You_lost:  "You lost"
 
-  life: "life"
+  life:
+    one: "1 life"
+    other: "%{count} lives"
 
   # Game details
   You_have_lives_remaining:  "You have %{lives} remaining"
