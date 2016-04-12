@@ -56,7 +56,7 @@ end
 
 
 When(/^I make a(?:n)? (in)?correct guess$/) do |incorrect|
-  @guess = ((incorrect ? INCORRECT_GUESSES : CORRECT_GUESSES) - @game.guessed_letters).sample
+  @guess = ((incorrect ? INCORRECT_GUESSES : CORRECT_GUESSES) - all_guesses).sample
   step "I enter #{@guess} as Guess"
   step 'I click "Submit guess"'
 end
