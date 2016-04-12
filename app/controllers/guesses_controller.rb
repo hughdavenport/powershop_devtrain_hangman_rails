@@ -1,7 +1,12 @@
 class GuessesController < ApplicationController
-  before_action :set_game, only: [:create]
+  before_action :set_game
 
-  # POST /guesses
+  # GET /games/:game_id/guesses
+  def index
+    redirect_to @game
+  end
+
+  # POST /games/:game_id/guesses
   # POST /guesses.json
   def create
     service = SubmitGuess.new(@game, guess_params[:guess])

@@ -7,6 +7,11 @@ class WordsController < ApplicationController
     @word = @word_list.words.new
   end
 
+  # GET /word_list/:word_list_id/words
+  def index
+    redirect_to @word_list
+  end
+
   # POST /word_list/:word_list_id/words
   # POST /word_list/:word_list_id/words.json
   def create
