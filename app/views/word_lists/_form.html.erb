@@ -1,6 +1,6 @@
 <%= form_for(@word_list) do |f| %>
   <% if @word_list.errors.any? %>
-    <div id="error explanation">
+    <div id="error_explanation">
       <h2><%= t("%{errors} prohibited this %{thing} from being saved", errors: t(:error, count: @word_list.errors.count), thing: WordList.model_name.human.downcase) %>:</h2>
 
       <ul>

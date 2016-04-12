@@ -1,7 +1,7 @@
 <%= form_for([@game, @game.guesses.build]) do |f| %>
   <%# with service model, this will be @errors, assigned in controller %>
   <% if @errors and @errors.any? %>
-    <div id="error explanation">
+    <div id="error_explanation">
       <h2><%= t("%{errors} prohibited this %{thing} from being saved", errors: t(:error, count: @errors.count), thing: Guess.model_name.human.downcase) %>:</h2>
 
       <ul>
