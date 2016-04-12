@@ -35,6 +35,7 @@ fr:
       wrong_length:
         one: "est la longueur incorrecte (devrait être 1 caractère)"
         other: "est la longueur incorrecte (devrait être %{count} caractères)"
+      taken: "a déjà été prise"
 
   # Plural things
   error:

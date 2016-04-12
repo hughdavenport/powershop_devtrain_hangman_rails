@@ -35,6 +35,7 @@ es:
       wrong_length:
         one: "es la longitud incorrecta (debe ser de 1 carácter)"
         other: "es la longitud incorrecta (debe ser de %{count} caracteres)"
+      taken: "ya ha sido tomada"
 
   # Plural things
   error:
