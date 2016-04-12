@@ -42,6 +42,13 @@ RSpec.describe WordsController, type: :controller do
     end
   end
 
+  describe "GET #index" do
+    it "redirects to the wordlist" do
+      get :index, {:word_list_id => word_list}, valid_session
+      expect(response).to redirect_to(word_list)
+    end
+  end
+
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Word" do

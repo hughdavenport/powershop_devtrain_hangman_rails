@@ -2,6 +2,10 @@ require "rails_helper"
 
 RSpec.describe WordsController, type: :routing do
   describe "routing" do
+    it "routes to #index" do
+      expect(:get => "/word_lists/:word_list_id/words").to route_to("words#index", :word_list_id => ":word_list_id")
+    end
+
     it "routes to #new" do
       expect(:get => "/word_lists/:word_list_id/words/new").to route_to("words#new", :word_list_id => ":word_list_id")
     end

@@ -39,6 +39,13 @@ RSpec.describe GuessesController, type: :controller do
   # GuessesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  describe "GET #index" do
+    it "redirects to the game" do
+      get :index, {:game_id => game}, valid_session
+      expect(response).to redirect_to(game)
+    end
+  end
+
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Guess" do
