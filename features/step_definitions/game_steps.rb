@@ -41,7 +41,7 @@ Given(/^I have almost lost a game$/) do
 end
 
 
-When(/^I make a(n)? (in)?valid guess$/) do |plural_to_ignore, invalid|
+When(/^I make a(?:n)? (in)?valid guess$/) do |invalid|
   @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guessed_letters).sample
   step "I enter #{@guess} as Guess"
   step 'I click "Submit guess"'
@@ -56,7 +56,7 @@ Then(/^I should see my guess$/) do
   within(GUESSES_SELECTOR) { expect(page).to have_content(/^.*: ([a-z] )*#{@guess}( [a-z])*$/) }
 end
 
-Then(/^I should have (no|\d+) (in)?correct guess(es)?$/) do |number, incorrect, plural_to_ignore|
+Then(/^I should have (no|\d+) (in)?correct guess(?:es)?$/) do |number, incorrect|
   number = 0 if number == "no"
   correct_guesses = find(GUESSED_WORD_SELECTOR).text
                                                .gsub(/^.*:/, '')
@@ -78,7 +78,7 @@ Then(/^I should have (\d+) lives left$/) do |lives|
   expect(find(LIVES_REMAINING_SELECTOR).text.gsub(LIVES_REMAINING_REGEX, '\\k<lives>')).to eql lives
 end
 
-Then(/^I should have lost (no|\d+)? (more )?li(ves|fe)$/) do |number, more_to_ignore, plural_to_ignore|
+Then(/^I should have lost (no|\d+)? (?:more )?(?:lives|life)$/) do |number|
   number = 0 if number == "no"
   lives = find(LIVES_REMAINING_SELECTOR).text.gsub(LIVES_REMAINING_REGEX, '\\k<lives>').to_i
   expect(lives).to be (@lives - number.to_i)
