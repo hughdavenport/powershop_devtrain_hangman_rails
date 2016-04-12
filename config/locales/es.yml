@@ -3,14 +3,14 @@ es:
     submit:
       create: "Crear %{model}"
       guess:
-        create: "Enviar conjectura"
+        create: "Enviar conjetura"
 
   activerecord:
     models:
       game:
         one: "Juego"
         other: "Juegos"
-      guess: "Conjectura"
+      guess: "Conjetura"
       word_list:
         one: "Lista de palabra"
         other: "Listas de palabra"
@@ -20,7 +20,7 @@ es:
         wordlist_name: "Nombre de lista de palabras"
         starting_lives: "A partir vidas"
       guess:
-        guess: "Conjectura"
+        guess: "Conjetura"
       word_list:
         name: "Nombre"
       word:
