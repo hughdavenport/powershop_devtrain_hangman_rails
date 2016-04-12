@@ -14,7 +14,7 @@ LIVES_REMAINING_REGEX = Regexp.union(LIVES_REMAINING_SINGULAR_REGEX,
 
 # Background
 Given(/^there is a wordlist called "(.*?)" with the following data$/) do |wordlist_name, words|
-  CreateWordList.new(wordlist_name, words.rows.flatten).call unless WordList.exists?(name: wordlist_name)
+  CreateWordList.new(wordlist_name, words.rows.flatten).call
 end
 
 
