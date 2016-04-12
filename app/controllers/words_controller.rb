@@ -13,29 +13,20 @@ class WordsController < ApplicationController
   end
 
   # POST /word_list/:word_list_id/words
-  # POST /word_list/:word_list_id/words.json
   def create
     @word = @word_list.words.new(word_params)
 
-    respond_to do |format|
-      if @word.save
-        format.html { redirect_to @word_list, notice: 'Word was successfully created.' }
-        format.json { render :show, status: :created, location: @word }
-      else
-        format.html { render :new }
-        format.json { render json: @word.errors, status: :unprocessable_entity }
-      end
+    if @word.save
+      redirect_to @word_list, notice: 'Word was successfully created.'
+    else
+      render :new
     end
   end
 
   # DELETE /word_list/:word_list_id/words/1
-  # DELETE /word_list/:word_list_id/words/1.json
   def destroy
     @word.destroy
-    respond_to do |format|
-      format.html { redirect_to @word_list, notice: 'Word was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @word_list, notice: 'Word was successfully destroyed.'
   end
 
   private
