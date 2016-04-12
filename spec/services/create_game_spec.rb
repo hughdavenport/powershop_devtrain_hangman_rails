@@ -36,7 +36,7 @@ RSpec.describe CreateGame, type: :service do
 
     it "has no errors" do
       service.call
-      expect(service.errors).to be_empty
+      expect(service.errors).not_to be_present
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe CreateGame, type: :service do
 
       it "has errors" do
         service.call
-        expect(service.errors).not_to be_empty
+        expect(service.errors).to be_present
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe CreateGame, type: :service do
 
       it "has errors" do
         service.call
-        expect(service.errors).not_to be_empty
+        expect(service.errors).to be_present
       end
     end
 
@@ -106,7 +106,7 @@ RSpec.describe CreateGame, type: :service do
 
       it "has errors" do
         service.call
-        expect(service.errors).not_to be_empty
+        expect(service.errors).to be_present
       end
     end
   end
