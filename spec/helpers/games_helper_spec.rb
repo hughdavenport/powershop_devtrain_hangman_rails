@@ -16,6 +16,9 @@ RSpec.describe GamesHelper, type: :helper do
   let(:guesses) { %w[h n m w p k] }
   before { guesses.each { |guess| SubmitGuess.new(game, guess).call } }
 
+  let(:wordlist_names) { %w[testing testing2 testing3] }
+  before { wordlist_names.each { |name| CreateWordList.new(name, []).call } }
+
   describe "#guessed_word" do
     let(:wrong_letters) { word.chars - guesses }
     let(:regexp) { Regexp.new(wrong_letters.join('|')) }
@@ -27,6 +30,12 @@ RSpec.describe GamesHelper, type: :helper do
   describe "#guessed_letters" do
     it "should have the guessed letters separated by spaces" do
       expect(helper.guessed_letters(game)).to eq guesses.join(" ")
+    end
+  end
+
+  describe "#wordlist_names" do
+    it "should have the wordlist names" do
+      expect(helper.wordlist_names).to eq wordlist_names
     end
   end
 end

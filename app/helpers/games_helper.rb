@@ -6,4 +6,8 @@ module GamesHelper
   def guessed_letters(game)
     game.guessed_letters.join(" ")
   end
+
+  def wordlist_names
+    WordList.pluck(:name)
+  end
 end
