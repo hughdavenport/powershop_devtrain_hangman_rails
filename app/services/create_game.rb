@@ -22,7 +22,7 @@ class CreateGame
         errors.messages[:wordlist_name] = [errors.generate_message(:wordlist_name)]
         errors.messages.delete(:word)
       end
-    end if game
+    end
   end
 
   private
