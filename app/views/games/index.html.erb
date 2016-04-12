@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= t(:Listing_things, things: Game.model_name.human(count: 2)) %></h1>
+<h1><%= t("Listing %{things}", things: Game.model_name.human(count: 2)) %></h1>
 
 <table>
   <thead>
@@ -12,8 +12,8 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= link_to t(:Show), game %></td>
-        <td><%= link_to t(:Destroy), game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t("Show"), game %></td>
+        <td><%= link_to t("Destroy"), game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,5 +21,5 @@
 
 <br>
 
-<%= link_to t(:New_thing, thing: Game.model_name.human), new_game_path %>
+<%= link_to t("New %{thing}", thing: Game.model_name.human), new_game_path %>
 <%= link_to WordList.model_name.human(count: 2), word_lists_path %>

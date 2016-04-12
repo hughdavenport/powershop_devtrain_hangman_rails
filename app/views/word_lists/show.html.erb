@@ -20,6 +20,6 @@
   </table>
 </p>
 
-<%= link_to t(:Add_thing, thing: Word.model_name.human), new_word_list_word_path(@word_list) %> |
-<%= link_to t(:Edit), edit_word_list_path(@word_list) %> |
-<%= link_to t(:Back), word_lists_path %>
+<%= link_to t("Add %{thing}", thing: Word.model_name.human), new_word_list_word_path(@word_list) %> |
+<%= link_to t("Edit"), edit_word_list_path(@word_list) %> |
+<%= link_to t("Back"), word_lists_path %>

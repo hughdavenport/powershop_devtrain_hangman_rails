@@ -36,36 +36,37 @@ en:
       word: "Word"
 
   # Errors
+  "%{errors} prohibited this %{thing} from being saved": "%{errors} prohibited this %{thing} from being saved"
+
+  # Plural things
   error:
     one: "1 error"
     other: "%{count} errors"
-  errors_prohibited_this_thing_from_being_saved: "%{errors} prohibited this %{thing} from being saved"
-
-  # On all views
-  Listing_things: "Listing %{things}"
-  New_thing: "New %{thing}"
-  Editing_thing: "Editing %{thing}"
-  Add_thing: "Add %{thing}"
-  Back: "Back"
-  Show: "Show"
-  Edit: "Edit"
-  Destroy: "Destroy"
-
-  # Game show view
-  # Losing a game
-  GAME_OVER: "GAME OVER!"
-  You_won:   "You won"
-  You_lost:  "You lost"
-
   life:
     one: "1 life"
     other: "%{count} lives"
 
+  # On all views
+  "Listing %{things}": "Listing %{things}"
+  "New %{thing}":      "New %{thing}"
+  "Editing %{thing}":  "Editing %{thing}"
+  "Add %{thing}":      "Add %{thing}"
+  "Back":    "Back"
+  "Show":    "Show"
+  "Edit":    "Edit"
+  "Destroy": "Destroy"
+
+  # Game show view
+  # Losing a game
+  "GAME OVER!": "GAME OVER!"
+  "You won":    "You won"
+  "You lost":   "You lost"
+
   # Game details
-  You_have_lives_remaining:  "You have %{lives} remaining"
-  Currently_guessed_word_is: "Currently guessed word is: %{guessed_word}"
-  You_have_guessed:          "You have guessed: %{guessed_letters}"
+  "You have %{lives} remaining":                "You have %{lives} remaining"
+  "Currently guessed word is: %{guessed_word}": "Currently guessed word is: %{guessed_word}"
+  "You have guessed: %{guessed_letters}":       "You have guessed: %{guessed_letters}"
 
   # Debug mode
-  DEBUG_MODE: "DEBUG MODE"
-  The_word_is: "The word is: %{word}"
+  "DEBUG MODE": "DEBUG MODE"
+  "The word is: %{word}": "The word is: %{word}"

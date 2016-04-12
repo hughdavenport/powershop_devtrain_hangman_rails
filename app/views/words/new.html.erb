@@ -1,5 +1,5 @@
-<h1><%= t(:New_thing, thing: Word.model_name.human) %></h1>
+<h1><%= t("New %{thing}", thing: Word.model_name.human) %></h1>
 
 <%= render 'form' %>
 
-<%= link_to t(:Back), word_list_path(@word_list) %>
+<%= link_to t("Back"), word_list_path(@word_list) %>

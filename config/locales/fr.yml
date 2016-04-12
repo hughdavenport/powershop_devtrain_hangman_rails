@@ -27,40 +27,41 @@ fr:
         word: "Mot"
 
   # Errors
-  error:
-    one: "1 erreur"
-    other: "%{count} erreurs"
-  errors_prohibited_this_thing_from_being_saved: "%{errors} interdit cette %{thing} d'être sauvé" # cette is feminine
+  "%{errors} prohibited this %{thing} from being saved": "%{errors} interdit cette %{thing} d'être sauvé" # cette is feminine
   errors:
     messages:
       greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
       invalid: "est invalide"
 
-  # On all views
-  Listing_things: "Liste des %{things}"
-  New_thing: "Nouvelle %{thing}"
-  Editing_thing: "Modifier %{thing}"
-  Add_thing: "Ajouter %{thing}"
-  Back: "Arrière"
-  Show: "Montrer"
-  Edit: "Modifier"
-  Destroy: "Détruire"
-
-  # Game show view
-  # Losing a game
-  GAME_OVER: "JEU TERMINÉ!"
-  You_won:   "Vous avez gagné"
-  You_lost:  "Vous avez perdu"
-
+  # Plural things
+  error:
+    one: "1 erreur"
+    other: "%{count} erreurs"
   life:
     one: "1 vie"
     other: "%{count} vies"
 
+  # On all views
+  "Listing %{things}": "Liste des %{things}"
+  "New %{thing}": "Nouvelle %{thing}"
+  "Editing %{thing}": "Modifier %{thing}"
+  "Add %{thing}": "Ajouter %{thing}"
+  "Back": "Arrière"
+  "Show": "Montrer"
+  "Edit": "Modifier"
+  "Destroy": "Détruire"
+
+  # Game show view
+  # Losing a game
+  "GAME OVER": "JEU TERMINÉ!"
+  "You won":   "Vous avez gagné"
+  "You lost":  "Vous avez perdu"
+
   # Game details
-  You_have_lives_remaining:  "Vous avez %{lives} restant"
-  Currently_guessed_word_is: "Actuellement mot deviné est: %{guessed_word}"
-  You_have_guessed:          "Vous avez deviné: %{guessed_letters}"
+  "You have %{lives} remaining":  "Vous avez %{lives} restant"
+  "Currently guessed word is": "Actuellement mot deviné est: %{guessed_word}"
+  "You have guessed":          "Vous avez deviné: %{guessed_letters}"
 
   # Debug mode
-  DEBUG_MODE: "MODE DÉBOGAGE"
-  The_word_is: "Le mot est: %{word}"
+  "DEBUG MODE": "MODE DÉBOGAGE"
+  "The word is": "Le mot est: %{word}"
