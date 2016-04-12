@@ -5,11 +5,7 @@ RSpec.describe CreateWordList, type: :service do
 
   context "with a valid name and set of words" do
     let(:name) { "testing" }
-    let(:words) { [
-      "apple",
-      "banana",
-      "carrot",
-    ] }
+    let(:words) { %w[apple banana carrot] }
 
     it "succeeds" do
       expect(service.call).to be_truthy
@@ -97,7 +93,7 @@ RSpec.describe CreateWordList, type: :service do
     let(:name) { "testing" }
 
     context "containing short words" do
-      let(:words) { [ "valid", "ab", "another" ] }
+      let(:words) { %w[valid ab another] }
 
       it "fails" do
         expect(service.call).to be_falsey
@@ -124,7 +120,7 @@ RSpec.describe CreateWordList, type: :service do
     end
 
     context "containing too long words" do
-      let(:words) { [ "valid", "waytoolongawordforhangman", "another" ] }
+      let(:words) { %w[valid waytoolongawordforhangman another] }
 
       it "fails" do
         expect(service.call).to be_falsey
@@ -151,7 +147,7 @@ RSpec.describe CreateWordList, type: :service do
     end
 
     context "containing capital letters" do
-      let(:words) { [ "valid", "Capital", "another" ] }
+      let(:words) { %w[valid Capital another] }
 
       it "fails" do
         expect(service.call).to be_falsey

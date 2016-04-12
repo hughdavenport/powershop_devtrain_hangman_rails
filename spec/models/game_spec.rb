@@ -148,7 +148,7 @@ RSpec.describe Game, type: :model do
   context "when I have a game with the word almost guessed and three incorrect guesses" do
     subject(:game) { Game.create!(word: word) }
     let(:word) { "hangman" }
-    let(:letters) { ["e", "g", "m", "s", "n", "h", "r"] }
+    let(:letters) { %w[e g m s n h r] }
     before { letters.each { |letter| expect(SubmitGuess.new(game, letter).call).to be true } }
 
     context "and I make an incorrect guess" do
