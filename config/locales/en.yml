@@ -29,9 +29,17 @@ en:
       game:
         one: "Game"
         other: "Games"
+      guess: "Guess"
       word_list:
         one: "Word List"
         other: "Word Lists"
+      word: "Word"
+
+  # Errors
+  error:
+    one: "1 error"
+    other: "%{count} errors"
+  errors_prohibited_this_thing_from_being_saved: "%{errors} prohibited this %{thing} from being saved"
 
   # On all views
   Listing_things: "Listing %{things}"

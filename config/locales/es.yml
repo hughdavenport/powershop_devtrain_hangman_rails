@@ -10,6 +10,7 @@ es:
       game:
         one: "Juego"
         other: "Juegos"
+      guess: "Conjectura"
       word_list:
         one: "Lista de palabra"
         other: "Listas de palabra"
@@ -24,6 +25,12 @@ es:
         name: "Nombre"
       word:
         word: "Palabra"
+
+  # Errors
+  error:
+    one: "1 error"
+    other: "%{count} errores"
+  errors_prohibited_this_thing_from_being_saved: "%{errors} prohibido esta %{thing} se guarden" # esta is feminine
 
   # On all views
   Listing_things: "Listado de %{things}"

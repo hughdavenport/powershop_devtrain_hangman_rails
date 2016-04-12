@@ -10,6 +10,7 @@ fr:
       game:
         one: "Jeu"
         other: "Jeux"
+      guess: "Conjecture"
       word_list:
         one: "Liste de mots"
         other: "Listes de mots"
@@ -24,6 +25,12 @@ fr:
         name: "Nom"
       word:
         word: "Mot"
+
+  # Errors
+  error:
+    one: "1 erreur"
+    other: "%{count} erreurs"
+  errors_prohibited_this_thing_from_being_saved: "%{errors} interdit cette %{thing} d'être sauvé" # cette is feminine
 
   # On all views
   Listing_things: "Liste des %{things}"
