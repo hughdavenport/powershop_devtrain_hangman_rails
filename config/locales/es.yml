@@ -43,25 +43,25 @@ es:
 
   # On all views
   "Listing %{things}": "Listado de %{things}"
-  "New %{thing}": "Nuevo %{thing}"
-  "Editing %{thing}": "Editar %{thing}"
-  "Add %{thing}": "Añadir %{thing}"
-  "Back": "Espalda"
-  "Show": "Mostrar"
-  "Edit": "Editar"
+  "New %{thing}":      "Nuevo %{thing}"
+  "Editing %{thing}":  "Editar %{thing}"
+  "Add %{thing}":      "Añadir %{thing}"
+  "Back":    "Espalda"
+  "Show":    "Mostrar"
+  "Edit":    "Editar"
   "Destroy": "Destruir"
 
   # Game show view
   # Losing a game
   "GAME OVER!": "¡JUEGO TERMINADO!"
-  "You won":   "Ganaste"
-  "You lost":  "Perdiste"
+  "You won":    "Ganaste"
+  "You lost":   "Perdiste"
 
   # Game details
-  "You have %{lives} remaining":  "Usted tiene %{lives} restante"
-  "Currently guessed word is": "Actualmente es la palabra adivinado: %{guessed_word}"
-  "You have guessed":          "Usted tiene adivinado: %{guessed_letters}"
+  "You have %{lives} remaining":                "Usted tiene %{lives} restante"
+  "Currently guessed word is: %{guessed_word}": "Actualmente es la palabra adivinado: %{guessed_word}"
+  "You have guessed: %{guessed_letters}":       "Usted tiene adivinado: %{guessed_letters}"
 
   # Debug mode
   "DEBUG MODE": "MODO DE DEPURACIÓN"
-  "The word is": "La palabra es: %{word}"
+  "The word is: %{word}": "La palabra es: %{word}"

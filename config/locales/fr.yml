@@ -43,25 +43,25 @@ fr:
 
   # On all views
   "Listing %{things}": "Liste des %{things}"
-  "New %{thing}": "Nouvelle %{thing}"
-  "Editing %{thing}": "Modifier %{thing}"
-  "Add %{thing}": "Ajouter %{thing}"
-  "Back": "Arrière"
-  "Show": "Montrer"
-  "Edit": "Modifier"
+  "New %{thing}":      "Nouvelle %{thing}"
+  "Editing %{thing}":  "Modifier %{thing}"
+  "Add %{thing}":      "Ajouter %{thing}"
+  "Back":    "Arrière"
+  "Show":    "Montrer"
+  "Edit":    "Modifier"
   "Destroy": "Détruire"
 
   # Game show view
   # Losing a game
-  "GAME OVER": "JEU TERMINÉ!"
-  "You won":   "Vous avez gagné"
-  "You lost":  "Vous avez perdu"
+  "GAME OVER!": "JEU TERMINÉ!"
+  "You won":    "Vous avez gagné"
+  "You lost":   "Vous avez perdu"
 
   # Game details
-  "You have %{lives} remaining":  "Vous avez %{lives} restant"
-  "Currently guessed word is": "Actuellement mot deviné est: %{guessed_word}"
-  "You have guessed":          "Vous avez deviné: %{guessed_letters}"
+  "You have %{lives} remaining":                "Vous avez %{lives} restant"
+  "Currently guessed word is: %{guessed_word}": "Actuellement mot deviné est: %{guessed_word}"
+  "You have guessed: %{guessed_letters}":       "Vous avez deviné: %{guessed_letters}"
 
   # Debug mode
   "DEBUG MODE": "MODE DÉBOGAGE"
-  "The word is": "Le mot est: %{word}"
+  "The word is: %{word}": "Le mot est: %{word}"
