@@ -39,4 +39,3 @@ Feature: Managing word lists
     And I see all the word lists
     When I click "Destroy" next to a list
     Then I should see a word list destroyed
-

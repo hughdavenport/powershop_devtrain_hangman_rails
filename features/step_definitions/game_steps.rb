@@ -1,7 +1,7 @@
 TESTING_WORD = "powershop"
 STARTING_LIVES = 10
-VALID_GUESSES = TESTING_WORD.chars.uniq
-INVALID_GUESSES = (("a".."z").to_a - VALID_GUESSES)
+CORRECT_GUESSES = TESTING_WORD.chars.uniq
+INCORRECT_GUESSES = (("a".."z").to_a - CORRECT_GUESSES)
 
 LIVES_REMAINING_SELECTOR = "#livesremaining"
 GUESSED_WORD_SELECTOR    = "#guessed_word"
@@ -44,25 +44,25 @@ end
 
 Given(/^I have almost won a game$/) do
   step "I have a new game"
-  step "I make #{VALID_GUESSES.count - 1} valid guesses"
+  step "I make #{CORRECT_GUESSES.count - 1} correct guesses"
   @lives = @game.lives
 end
 
 Given(/^I have almost lost a game$/) do
   step "I have a new game"
-  step "I make #{@lives - 1} invalid guesses"
+  step "I make #{@lives - 1} incorrect guesses"
   @lives = @game.lives
 end
 
 
-When(/^I make a(?:n)? (in)?valid guess$/) do |invalid|
-  @guess = ((invalid ? INVALID_GUESSES : VALID_GUESSES) - @game.guessed_letters).sample
+When(/^I make a(?:n)? (in)?correct guess$/) do |incorrect|
+  @guess = ((incorrect ? INCORRECT_GUESSES : CORRECT_GUESSES) - @game.guessed_letters).sample
   step "I enter #{@guess} as Guess"
   step 'I click "Submit guess"'
 end
 
-When(/^I make (\d+) (in)?valid guesses$/) do |number, invalid|
-  number.to_i.times { step "I make a #{invalid}valid guess" }
+When(/^I make (\d+) (in)?correct guesses$/) do |number, incorrect|
+  number.to_i.times { step "I make a #{incorrect}correct guess" }
 end
 
 

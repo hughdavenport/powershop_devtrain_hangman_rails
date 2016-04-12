@@ -23,17 +23,17 @@ Feature: Playing a game
     Then I should see a new game
     And I should have 5 lives left
 
-  Scenario: Making a valid guess
+  Scenario: Making a correct guess
     Given I have a new game
-    When I make a valid guess
+    When I make a correct guess
     Then I should see my guess
     And I should have 1 correct guess
     And I should have no incorrect guesses
     And I should have lost no lives
 
-  Scenario: Making an invalid guess
+  Scenario: Making an incorrect guess
     Given I have a new game
-    When I make an invalid guess
+    When I make an incorrect guess
     Then I should see my guess
     And I should have no correct guesses
     And I should have 1 incorrect guess
@@ -41,35 +41,35 @@ Feature: Playing a game
 
   Scenario: Making multiple guesses
     Given I have a new game
-    When I make 3 valid guesses
-    And I make 2 invalid guesses
+    When I make 3 correct guesses
+    And I make 2 incorrect guesses
     Then I should have 3 correct guesses
     And I should have lost 2 lives
 
   Scenario: Almost wining a game
     Given I have almost won a game
-    When I make an invalid guess
+    When I make an incorrect guess
     Then I should not have won the game
     And I should not have lost the game
     And I should have lost 1 more life
 
   Scenario: Winning a game
     Given I have almost won a game
-    When I make a valid guess
+    When I make a correct guess
     Then I should have won the game
     And I should not have lost the game
     And I should have lost no more lives
 
   Scenario: Almost losing a game
     Given I have almost lost a game
-    When I make a valid guess
+    When I make a correct guess
     Then I should not have lost the game
     And I should not have won the game
     And I should have lost no more lives
 
   Scenario: Losing a game
     Given I have almost lost a game
-    When I make an invalid guess
+    When I make an incorrect guess
     Then I should have lost the game
     And I should not have won the game
 
