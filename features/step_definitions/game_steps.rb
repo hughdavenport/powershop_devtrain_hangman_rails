@@ -12,6 +12,20 @@ LIVES_REMAINING_PLURAL_REGEX   = /\AYou have (?<lives>\d+) lives remaining\z/
 LIVES_REMAINING_REGEX = Regexp.union(LIVES_REMAINING_SINGULAR_REGEX,
                                 LIVES_REMAINING_PLURAL_REGEX)
 
+def correct_guesses
+  find(GUESSED_WORD_SELECTOR).text
+                             .gsub(/^.*:/, '')
+                             .gsub(/[ _]/, '')
+                             .chars.uniq
+end
+
+def all_guesses
+  find(GUESSES_SELECTOR).text
+                        .gsub(/^.*:/, '')
+                        .gsub(/ /, '')
+                        .chars.uniq
+end
+
 # Background
 Given(/^there is a wordlist called "(.*?)" with the following data$/) do |wordlist_name, words|
   CreateWordList.new(wordlist_name, words.rows.flatten).call
@@ -58,15 +72,7 @@ end
 
 Then(/^I should have (no|\d+) (in)?correct guess(?:es)?$/) do |number, incorrect|
   number = 0 if number == "no"
-  correct_guesses = find(GUESSED_WORD_SELECTOR).text
-                                               .gsub(/^.*:/, '')
-                                               .gsub(/[ _]/, '')
-                                               .chars.uniq
   if incorrect
-    all_guesses = find(GUESSES_SELECTOR).text
-                                        .gsub(/^.*:/, '')
-                                        .gsub(/ /, '')
-                                        .chars.uniq
     test = (all_guesses - correct_guesses).count
   else
     test = correct_guesses.count
