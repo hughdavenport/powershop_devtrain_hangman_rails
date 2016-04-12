@@ -32,6 +32,9 @@ fr:
     messages:
       greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
       invalid: "est invalide"
+      wrong_length:
+        one: "est la longueur incorrecte (devrait être 1 caractère)"
+        other: "est la longueur incorrecte (devrait être %{count} caractères)"
 
   # Plural things
   error:
