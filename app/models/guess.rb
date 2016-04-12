@@ -6,6 +6,6 @@ class Guess < ActiveRecord::Base
   validate :game_running
 
   def game_running
-    errors.add(:game, "is finished") if game.finished?
+    errors.add(:game, errors.generate_message(:game, :is_finished)) if game.finished?
   end
 end

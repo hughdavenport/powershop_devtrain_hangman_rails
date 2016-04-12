@@ -6,6 +6,12 @@ es:
         create: "Enviar conjetura"
 
   activerecord:
+    errors:
+      models:
+        guess:
+          attributes:
+            game:
+              is_finished: "termina"
     models:
       game:
         one: "Juego"
@@ -21,6 +27,7 @@ es:
         starting_lives: "A partir vidas"
       guess:
         guess: "Conjetura"
+        game: "Juego"
       word_list:
         name: "Nombre"
       word:

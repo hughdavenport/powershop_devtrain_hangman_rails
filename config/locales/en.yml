@@ -25,6 +25,12 @@ en:
       guess:
         create: "Submit guess"
   activerecord:
+    errors:
+      models:
+        guess:
+          attributes:
+            game:
+              is_finished: "is finished"
     models:
       game:
         one: "Game"
