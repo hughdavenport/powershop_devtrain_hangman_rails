@@ -6,7 +6,7 @@ When(/^I click "([^"]*)"$/) do |link|
   click_on link
 end
 
-When(/^I click "([^"]*)" next to a (.*)$/) do |link, thing_to_ignore|
+When(/^I click "([^"]*)" next to a (?:.*)$/) do |link|
   within("table tbody tr td:contains('#{link}')", match: :first) { click_on link }
 end
 
