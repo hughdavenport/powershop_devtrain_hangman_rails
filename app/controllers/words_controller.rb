@@ -26,7 +26,7 @@ class WordsController < ApplicationController
   # DELETE /word_list/:word_list_id/words/1
   def destroy
     @word.destroy
-    redirect_to @word_list, notice: 'Word was successfully destroyed.'
+    redirect_to word_list_path(@word_list, params.slice(:page)), notice: 'Word was successfully destroyed.'
   end
 
   private

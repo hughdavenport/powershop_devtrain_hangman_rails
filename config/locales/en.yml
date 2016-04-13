@@ -76,3 +76,10 @@ en:
   # Debug mode
   "DEBUG MODE": "DEBUG MODE"
   "The word is: %{word}": "The word is: %{word}"
+
+  # Pagination
+  "Showing page %{page} of %{total}": "Showing page %{page} of %{total}"
+  "First":    "First"
+  "Previous": "Previous"
+  "Next":     "Next"
+  "Last":     "Last"

@@ -4,6 +4,7 @@
   <strong><%= WordList.human_attribute_name(:name) %>:</strong>
   <%= @word_list.name %>
 
+  <%= render 'pagination_header' if show_pagination? %>
   <table>
     <thead>
       <tr>
@@ -13,11 +14,12 @@
     </thead>
 
     <tbody>
-      <% @word_list.words.each do |word| %>
+      <% @word_list.words.page(pagination_page).each do |word| %>
         <%= render 'words/show', word: word %>
       <% end %>
     </tbody>
   </table>
+  <%= render 'pagination_footer' if show_pagination? %>
 </p>
 
 <%= link_to t("Add %{thing}", thing: Word.model_name.human), new_word_list_word_path(@word_list) %> |

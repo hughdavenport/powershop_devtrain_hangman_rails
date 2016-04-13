@@ -76,3 +76,10 @@ es:
   # Debug mode
   "DEBUG MODE": "MODO DE DEPURACIÓN"
   "The word is: %{word}": "La palabra es: %{word}"
+
+  # Pagination
+  "Showing page %{page} of %{total}": "Showing page %{page} of %{total}"
+  "First":    "Primero"
+  "Previous": "Anterior"
+  "Next":     "Siguiente"
+  "Last":     "Último"
